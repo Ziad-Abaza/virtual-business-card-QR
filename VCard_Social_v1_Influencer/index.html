@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kai Storm | Digital Creator</title>
+    <meta name="description"
+        content="Kai Storm - Digital Creator, Influencer, and Tech Enthusiast. Connect with my world.">
+
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="influencer-theme">
+    <!-- Background Effects -->
+    <div class="bg-gradient-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="cursor-follower"></div>
+        <div class="glass-overlay"></div>
+    </div>
+
+    <div class="main-wrapper">
+        <!-- Floating Header -->
+        <header class="top-nav">
+            <div class="status-chip">
+                <span class="pulse-dot"></span>
+                <span>REC LIVE</span>
+            </div>
+            <div class="nav-actions">
+                <button id="qrTrigger" class="icon-btn"><i class="ri-qr-code-line"></i></button>
+                <button id="shareTrigger" class="icon-btn"><i class="ri-share-forward-line"></i></button>
+            </div>
+        </header>
+
+        <!-- Bento Grid -->
+        <main class="bento-grid">
+            <!-- Profile Tile -->
+            <section class="tile tile-profile">
+                <div class="profile-container">
+                    <div class="image-wrapper">
+                        <img src="assets/profile.png" alt="Kai Storm" class="profile-img">
+                        <div class="verify-badge"><i class="ri-checkbox-circle-fill"></i></div>
+                    </div>
+                    <div class="profile-info">
+                        <h1>Kai Storm</h1>
+                        <p class="handle">@kaistorm_official</p>
+                        <p class="bio">Pushing boundaries in <span>Digital Art</span> & <span>Minimal Tech</span>. Based
+                            in Tokyo 🇯🇵</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stats Tile -->
+            <section class="tile tile-stats">
+                <div class="stat-item">
+                    <span class="stat-val" data-target="1.2">0</span><span class="m">M</span>
+                    <span class="stat-label">Followers</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-val" data-target="450">0</span><span class="k">K</span>
+                    <span class="stat-label">Views / Day</span>
+                </div>
+            </section>
+
+            <!-- Social Tiles -->
+            <a href="#" class="tile tile-social youtube">
+                <i class="ri-youtube-fill"></i>
+                <div class="social-meta">
+                    <span>YouTube</span>
+                    <p>New Video Weekly</p>
+                </div>
+                <i class="ri-arrow-right-up-line arrow"></i>
+            </a>
+
+            <a href="#" class="tile tile-social instagram">
+                <i class="ri-instagram-line"></i>
+                <div class="social-meta">
+                    <span>Instagram</span>
+                    <p>Daily Updates</p>
+                </div>
+                <i class="ri-arrow-right-up-line arrow"></i>
+            </a>
+
+            <!-- Latest Content Tile -->
+            <section class="tile tile-video">
+                <div class="video-preview">
+                    <img src="assets/video_thumb.png" alt="Latest Content">
+                    <div class="video-overlay">
+                        <span class="tag">LATEST</span>
+                        <div class="play-btn"><i class="ri-play-fill"></i></div>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h3>TOKYO NIGHTS: 48 Hours in the Future</h3>
+                    <p>128K Views • 2 hours ago</p>
+                </div>
+            </section>
+
+            <!-- TikTok / Short Tile -->
+            <a href="#" class="tile tile-social tiktok">
+                <i class="ri-tiktok-fill"></i>
+                <div class="social-meta">
+                    <span>TikTok</span>
+                </div>
+            </a>
+
+            <!-- Twitter / X Tile -->
+            <a href="#" class="tile tile-social twitter">
+                <i class="ri-twitter-x-fill"></i>
+                <div class="social-meta">
+                    <span>X.com</span>
+                </div>
+            </a>
+
+            <!-- Contact Tile -->
+            <section class="tile tile-contact">
+                <h3 class="tile-title">Work with me</h3>
+                <div class="contact-buttons">
+                    <a href="mailto:hello@kaistorm.com" class="contact-link">
+                        <i class="ri-mail-send-line"></i>
+                        <span>Email</span>
+                    </a>
+                    <a href="#" class="contact-link">
+                        <i class="ri-calendar-event-line"></i>
+                        <span>Book Call</span>
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <!-- Floating Action Button -->
+        <div class="fab-container">
+            <button class="main-fab" id="contactFab">
+                <span>CONNECT</span>
+                <i class="ri-add-line"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- QR Modal -->
+    <div class="modal" id="qrModal">
+        <div class="modal-content">
+            <button class="close-btn"><i class="ri-close-line"></i></button>
+            <div id="qrContainer"></div>
+            <h3>Scan for Profile</h3>
+            <p>Save contact directly to your phone</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

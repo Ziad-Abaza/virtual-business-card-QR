@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Dynamics | Classical V2</title>
+    <meta name="description" content="Nexus Dynamics - Global Identity. Innovation refined.">
+
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@100;300;400;600;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="antigravity-mode">
+    <!-- Background Elements -->
+    <div class="canvas-container">
+        <canvas id="particleCanvas"></canvas>
+        <div class="mesh-gradient"></div>
+        <div class="grid-overlay"></div>
+        <div class="noise-overlay"></div>
+    </div>
+
+    <!-- Main Navigation -->
+    <header class="header">
+        <div class="logo-container">
+            <div class="logo-symbol">
+                <div class="symbol-inner"></div>
+            </div>
+            <div class="logo-text">
+                <span class="brand-name">NEXUS</span>
+                <span class="brand-vibe">Dynamics</span>
+            </div>
+        </div>
+        <div class="nav-links">
+            <button class="nav-item" id="qrToggle" aria-label="Show QR Code">
+                <i class="ri-qr-code-fill"></i>
+            </button>
+            <button class="nav-item primary-btn" id="contactBtn">
+                <span>CONNECT</span>
+                <i class="ri-arrow-right-up-line"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main class="content-grid">
+        <!-- Hero Section -->
+        <section class="artifact hero-artifact" id="hero">
+            <div class="artifact-content">
+                <div class="badge">Enterprise Identity</div>
+                <h1 class="glitch-text" data-text="Pioneering Digital Architectures">Pioneering Digital Architectures
+                </h1>
+                <p>Curating the next generation of cloud infrastructures and high-scale systems.</p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="val">500+</span>
+                        <span class="label">Partners</span>
+                    </div>
+                    <div class="stat">
+                        <span class="val">24</span>
+                        <span class="label">Regions</span>
+                    </div>
+                </div>
+            </div>
+            <div class="artifact-glow"></div>
+        </section>
+
+        <!-- Solutions Module -->
+        <section class="artifact solutions-artifact" id="solutions">
+            <div class="artifact-content">
+                <div class="section-title">
+                    <i class="ri-apps-2-line"></i>
+                    <span>Core Operations</span>
+                </div>
+                <div class="solutions-list">
+                    <div class="solution-item">
+                        <div class="item-icon"><i class="ri-cloud-line"></i></div>
+                        <div class="item-text">
+                            <h3>Cloud Infrastructure</h3>
+                            <p>Global edge deployments</p>
+                        </div>
+                    </div>
+                    <div class="solution-item">
+                        <div class="item-icon"><i class="ri-shield-keyhole-line"></i></div>
+                        <div class="item-text">
+                            <h3>Cyber Integrity</h3>
+                            <p>End-to-end security</p>
+                        </div>
+                    </div>
+                    <div class="solution-item">
+                        <div class="item-icon"><i class="ri-robot-2-line"></i></div>
+                        <div class="item-text">
+                            <h3>AI Integration</h3>
+                            <p>Intelligent automation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="artifact-glow"></div>
+        </section>
+
+        <!-- Media Artifact -->
+        <section class="artifact media-artifact" id="media">
+            <div class="video-overlay">
+                <div class="status-indicator">
+                    <span class="pulse"></span>
+                    <span>LIVE STREAM</span>
+                </div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=600&h=800&auto=format&fit=crop"
+                alt="Brand Vision" class="artifact-bg">
+            <div class="artifact-content">
+                <div class="play-trigger">
+                    <i class="ri-play-mini-fill"></i>
+                </div>
+                <div class="media-title">Brand Vision 2026</div>
+            </div>
+            <div class="artifact-glow"></div>
+        </section>
+
+        <!-- Social Hub -->
+        <section class="artifact social-artifact" id="social">
+            <div class="artifact-content">
+                <div class="section-title">
+                    <i class="ri-share-line"></i>
+                    <span>Connect Hub</span>
+                </div>
+                <div class="social-links">
+                    <a href="#" class="social-btn"><i class="ri-linkedin-fill"></i></a>
+                    <a href="#" class="social-btn"><i class="ri-twitter-x-fill"></i></a>
+                    <a href="#" class="social-btn"><i class="ri-instagram-line"></i></a>
+                </div>
+            </div>
+            <div class="artifact-glow"></div>
+        </section>
+
+        <!-- Status & News -->
+        <section class="artifact news-artifact" id="news">
+            <div class="artifact-content">
+                <div class="badge yellow">Announcement</div>
+                <h3>Expanding the Metaverse Node Ecosystem</h3>
+                <div class="date">Dec 2025</div>
+                <a href="#" class="read-more">
+                    <span>Read Protocol</span>
+                    <i class="ri-arrow-right-line"></i>
+                </a>
+            </div>
+            <div class="artifact-glow"></div>
+        </section>
+    </main>
+
+    <!-- UI Overlay Controls -->
+    <div class="ui-controls">
+        <button class="control-btn" id="themeToggle" title="Switch Frequency">
+            <i class="ri-flashlight-line"></i>
+        </button>
+    </div>
+
+    <!-- QR Modal -->
+    <div class="modal" id="qrModal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-pane">
+            <button class="close-modal"><i class="ri-close-line"></i></button>
+            <div class="modal-content">
+                <div class="qr-label">ACCESS IDENTITY</div>
+                <div id="qrContainer"></div>
+                <div class="qr-footer">Scan to sync profile</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Physics2DPlugin.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

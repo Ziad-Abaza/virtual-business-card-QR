@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Doe | Virtual Business Card</title>
+    <meta name="description" content="Virtual Business Card for John Doe - Creative Developer">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Background Elements -->
+    <div class="background-glob start"></div>
+    <div class="background-glob end"></div>
+    
+    <!-- Neural Network Canvas -->
+    <canvas id="neuralCanvas" class="neural-canvas"></canvas>
+
+    <main class="card-container">
+        <!-- Profile Header -->
+        <header class="card-header">
+            <div class="avatar-container">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&h=200&auto=format&fit=crop"
+                    alt="John Doe" class="avatar">
+                <div class="status-indicator"></div>
+            </div>
+            <h1 class="name">John Doe</h1>
+            <p class="role">Creative Developer</p>
+            <p class="company">Tech Innovations Inc.</p>
+        </header>
+
+        <!-- Action Buttons (Primary) -->
+        <div class="actions-primary">
+            <button class="btn btn-primary" id="saveContactBtn">
+                <i class="ri-user-add-line"></i>
+                <span>Save Contact</span>
+            </button>
+            <button class="btn btn-icon" id="qrBtn" aria-label="Show QR Code">
+                <i class="ri-qr-code-line"></i>
+            </button>
+        </div>
+
+        <!-- Create Divider -->
+        <div class="divider"></div>
+
+        <!-- Contact List -->
+        <div class="contact-list">
+            <a href="tel:+1234567890" class="contact-item">
+                <div class="icon-box"><i class="ri-phone-line"></i></div>
+                <div class="info">
+                    <span class="label">Phone</span>
+                    <span class="value">+1 234 567 890</span>
+                </div>
+                <i class="ri-arrow-right-s-line arrow"></i>
+            </a>
+
+            <a href="mailto:hello@johndoe.com" class="contact-item">
+                <div class="icon-box"><i class="ri-mail-line"></i></div>
+                <div class="info">
+                    <span class="label">Email</span>
+                    <span class="value">hello@johndoe.com</span>
+                </div>
+                <i class="ri-arrow-right-s-line arrow"></i>
+            </a>
+
+            <a href="https://johndoe.com" target="_blank" class="contact-item">
+                <div class="icon-box"><i class="ri-global-line"></i></div>
+                <div class="info">
+                    <span class="label">Website</span>
+                    <span class="value">johndoe.com</span>
+                </div>
+                <i class="ri-arrow-right-s-line arrow"></i>
+            </a>
+
+            <a href="https://maps.google.com" target="_blank" class="contact-item">
+                <div class="icon-box"><i class="ri-map-pin-line"></i></div>
+                <div class="info">
+                    <span class="label">Location</span>
+                    <span class="value">New York, NY</span>
+                </div>
+                <i class="ri-arrow-right-s-line arrow"></i>
+            </a>
+        </div>
+
+        <!-- Social Links -->
+        <div class="social-links">
+            <a href="#" class="social-btn"><i class="ri-linkedin-fill"></i></a>
+            <a href="#" class="social-btn"><i class="ri-twitter-x-fill"></i></a>
+            <a href="#" class="social-btn"><i class="ri-instagram-line"></i></a>
+            <a href="#" class="social-btn"><i class="ri-github-fill"></i></a>
+        </div>
+
+    </main>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">Copied to clipboard!</div>
+
+    <!-- QR Modal -->
+    <div class="modal-overlay" id="qrModal">
+        <div class="modal-content">
+            <button class="close-btn" id="closeModal"><i class="ri-close-line"></i></button>
+            <h3 class="modal-title">Scan to Connect</h3>
+            <div id="qr-code-container"></div>
+            <p class="modal-desc">Point your camera to save my details</p>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="shareBtn">
+                    <i class="ri-share-forward-line"></i> Share Link
+                </button>
+                <button class="btn btn-primary" id="downloadQrBtn">
+                    <i class="ri-download-line"></i> Download
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
