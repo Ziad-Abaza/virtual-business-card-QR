@@ -40,8 +40,10 @@
                 <span>REC LIVE</span>
             </div>
             <div class="nav-actions">
-                <button id="qrTrigger" class="icon-btn"><i class="ri-qr-code-line"></i></button>
-                <button id="shareTrigger" class="icon-btn"><i class="ri-share-forward-line"></i></button>
+                <button id="qrTrigger" class="icon-btn" aria-label="Show QR Code"><i
+                        class="ri-qr-code-line"></i></button>
+                <button id="shareTrigger" class="icon-btn" aria-label="Share Profile"><i
+                        class="ri-share-forward-line"></i></button>
             </div>
         </header>
 
@@ -51,7 +53,7 @@
             <section class="tile tile-profile">
                 <div class="profile-container">
                     <div class="image-wrapper">
-                        <img src="assets/profile.png" alt="Kai Storm" class="profile-img">
+                        <img src="assets/profile.png" alt="Kai Storm" class="profile-img" fetchpriority="high">
                         <div class="verify-badge"><i class="ri-checkbox-circle-fill"></i></div>
                     </div>
                     <div class="profile-info">
@@ -98,7 +100,7 @@
             <!-- Latest Content Tile -->
             <section class="tile tile-video">
                 <div class="video-preview">
-                    <img src="assets/video_thumb.png" alt="Latest Content">
+                    <img src="assets/video_thumb.png" alt="Latest Content" loading="lazy">
                     <div class="video-overlay">
                         <span class="tag">LATEST</span>
                         <div class="play-btn"><i class="ri-play-fill"></i></div>
@@ -154,7 +156,7 @@
     <!-- QR Modal -->
     <div class="modal" id="qrModal">
         <div class="modal-content">
-            <button class="close-btn"><i class="ri-close-line"></i></button>
+            <button class="close-btn" aria-label="Close Modal"><i class="ri-close-line"></i></button>
             <div id="qrContainer"></div>
             <h3>Scan for Profile</h3>
             <p>Save contact directly to your phone</p>

@@ -128,12 +128,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        draw() {
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--primary');
-            ctx.fill();
-        }
     }
 
     function initParticles() {
@@ -145,8 +139,43 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function connectParticles() {
-        const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim();
+    function hexToRgb(hex) {
+        if (!hex.startsWith('#')) return '82, 113, 255'; // Fallback
+        const r = parseInt(hex.slice(1, 3), 16);
+        const g = parseInt(hex.slice(3, 5), 16);
+        const b = parseInt(hex.slice(5, 7), 16);
+        return `${r}, ${g}, ${b}`;
+    }
+
+    // Optimization: Cache styles outside the loop
+    let currentPrimaryColor = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim();
+    let currentPrimaryRgb = hexToRgb(currentPrimaryColor);
+
+    // Update color on theme toggle
+    themeToggle.addEventListener('click', () => {
+        setTimeout(() => {
+            currentPrimaryColor = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim();
+            currentPrimaryRgb = hexToRgb(currentPrimaryColor);
+        }, 50);
+    });
+
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = currentPrimaryColor;
+
+        particles.forEach(p => {
+            p.update();
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fill();
+        });
+
+        connectParticles(currentPrimaryRgb);
+        requestAnimationFrame(animateParticles);
+    }
+
+    function connectParticles(rgbString) {
         for (let i = 0; i < particles.length; i++) {
             for (let j = i + 1; j < particles.length; j++) {
                 const dx = particles[i].x - particles[j].x;
@@ -156,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (distance < connectionDistance) {
                     const opacity = 1 - (distance / connectionDistance);
                     ctx.beginPath();
-                    ctx.strokeStyle = `rgba(${hexToRgb(primaryColor)}, ${opacity * 0.5})`;
+                    ctx.strokeStyle = `rgba(${rgbString}, ${opacity * 0.5})`;
                     ctx.lineWidth = 1;
                     ctx.moveTo(particles[i].x, particles[i].y);
                     ctx.lineTo(particles[j].x, particles[j].y);
@@ -164,24 +193,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         }
-    }
-
-    function hexToRgb(hex) {
-        if (!hex.startsWith('#')) return '82, 113, 255'; // Fallback
-        const r = parseInt(hex.slice(1, 3), 16);
-        const g = parseInt(hex.slice(3, 5), 16);
-        const b = parseInt(hex.slice(5, 7), 16);
-        return `${r}, ${g}, ${b}`;
-    }
-
-    function animateParticles() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particles.forEach(p => {
-            p.update();
-            p.draw();
-        });
-        connectParticles();
-        requestAnimationFrame(animateParticles);
     }
 
     window.addEventListener('resize', initParticles);

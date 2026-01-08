@@ -97,7 +97,8 @@ function render3DGallery() {
         card.style.background = getGradient(template.category);
 
         card.innerHTML = `
-            <div class="card-image" style="background-image: url('${template.image}');">
+            <div class="card-image">
+                <img src="${template.image}" alt="${template.title}" style="width: 100%; height: 100%; object-fit: cover;">
                 <div class="card-overlay"></div>
             </div>
             <div class="card-info">
@@ -196,7 +197,8 @@ function renderGrid(filter) {
         item.className = 'grid-item';
 
         item.innerHTML = `
-            <div class="grid-image" style="background-image: url('${template.image}');">
+            <div class="grid-image">
+                <img src="${template.image}" alt="${template.title}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;">
                 <div class="card-overlay" style="opacity: 0.2;"></div>
             </div>
             <div class="grid-content">
