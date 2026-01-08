@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VCard Template Gallery | Premium Collection</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="gallery.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-outline" id="cursor-outline"></div>
+
+    <nav class="navbar">
+        <div class="logo">VCard<span class="highlight">Gallery</span></div>
+        <div class="nav-links">
+            <a href="#showcase" class="active">Showcase</a>
+            <a href="#features">Features</a>
+            <a href="#templates">All Templates</a>
+        </div>
+        <button class="cta-btn">Get Access</button>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Next Gen <br><span class="gradient-text">Digital Identity</span></h1>
+            <p>Explore our premium collection of interactive Virtual Business Card templates. Designed to impress, built
+                to perform.</p>
+            <div class="hero-btns">
+                <a href="#showcase" class="btn primary">Explore Gallery</a>
+                <a href="#templates" class="btn secondary">View All</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="circle-blur"></div>
+            <div class="floating-cards">
+                <div class="float-card c1"></div>
+                <div class="float-card c2"></div>
+                <div class="float-card c3"></div>
+            </div>
+        </div>
+    </header>
+
+    <section id="showcase" class="showcase-section">
+        <div class="section-header">
+            <h2>Featured <span class="gradient-text">Templates</span></h2>
+            <p>Swipe to explore our top-rated designs in 3D</p>
+        </div>
+
+        <div class="gallery-3d-container">
+            <div class="gallery-controls">
+                <button id="prevBtn" class="nav-btn"><i class="fas fa-chevron-left"></i></button>
+                <div class="gallery-track" id="galleryTrack">
+                    <!-- Cards injected via JS -->
+                </div>
+                <button id="nextBtn" class="nav-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="template-details" id="templateDetails">
+                <!-- Details injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <section id="templates" class="filter-section">
+        <div class="section-header">
+            <h2>Template <span class="gradient-text">Collection</span></h2>
+        </div>
+
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="brand">Brand</button>
+            <button class="filter-btn" data-filter="personal">Personal</button>
+            <button class="filter-btn" data-filter="portfolio">Portfolio</button>
+            <button class="filter-btn" data-filter="social">Social</button>
+        </div>
+
+        <div class="templates-grid" id="templatesGrid">
+            <!-- Grid items injected via JS -->
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 VCard Templates. Crafted with <i class="fas fa-heart"></i> for Professionals.</p>
+    </footer>
+
+    <script src="gallery.js"></script>
+</body>
+
+</html>
