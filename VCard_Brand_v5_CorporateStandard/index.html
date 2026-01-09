@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Corporate Digital Card Template</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#137fec",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101922",
+            },
+            fontFamily: {
+              display: ["Manrope", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .glass-effect {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .profile-3d-shadow {
+        box-shadow: 0 20px 50px -12px rgba(19, 127, 236, 0.3);
+      }
+    </style>
+    <style>
+      body {
+        min-height: max(884px, 100dvh);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark font-display text-white selection:bg-primary/30"
+  >
+    <div
+      class="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-[430px] mx-auto shadow-2xl"
+    >
+      <!-- TopAppBar -->
+      <div
+        class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-50"
+      >
+        <div
+          class="text-slate-800 dark:text-white flex size-12 shrink-0 items-center justify-center cursor-pointer"
+        >
+          <span class="material-symbols-outlined">arrow_back_ios</span>
+        </div>
+        <h2
+          class="text-slate-900 dark:text-white text-sm font-bold leading-tight tracking-wide uppercase flex-1 text-center"
+        >
+          Digital Business Card
+        </h2>
+        <div class="flex w-12 items-center justify-end">
+          <button
+            id="btnHeaderShare"
+            class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 bg-transparent text-slate-800 dark:text-white gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0"
+          >
+            <span class="material-symbols-outlined">share</span>
+          </button>
+        </div>
+      </div>
+      <!-- ProfileHeader with 3D Effect -->
+      <div class="flex p-6 @container relative">
+        <div
+          class="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent pointer-events-none"
+        ></div>
+        <div class="flex w-full flex-col gap-6 items-center relative z-10">
+          <div class="flex gap-6 flex-col items-center">
+            <div class="relative">
+              <div
+                class="absolute inset-0 bg-primary/20 rounded-full blur-2xl transform scale-110"
+              ></div>
+              <div
+                class="relative bg-center bg-no-repeat aspect-square bg-cover rounded-full h-40 w-40 border-4 border-primary/20 profile-3d-shadow"
+                data-alt="Professional corporate portrait of a male executive"
+                style="
+                  background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAnzenwYUnXXK2d9iRrjFS1kNQK2un5FIqjdHB7UbnuwrRCTJ84f8BJuaKQs-lYCK5llVZD02Bw7hp6hF_hQ83PHf6hxoDoCETSUWTVwxWkGi4qEziZtpzxG41LAIGgAmBn34DgIWk5GE0KiqHdTrP9b8zZjz1Y5k4-KJRN6EswFFJkKFtlkW_W6pbKON_raKmtj1tj5-GJsxHEr1LQ-uZhLE8pWRlSDR3Nqj_gQnAeVeIDQqg_0IghI6XgouNNkuAWXdnCSj-8ZQE');
+                "
+              ></div>
+            </div>
+            <div class="flex flex-col items-center justify-center text-center">
+              <h1
+                class="text-slate-900 dark:text-white text-3xl font-extrabold leading-tight tracking-tight"
+              >
+                Marcus V. Sterling
+              </h1>
+              <p class="text-primary text-lg font-semibold tracking-wide mt-1">
+                Senior Corporate Strategist
+              </p>
+              <p
+                class="text-slate-500 dark:text-[#92adc9] text-sm font-medium uppercase tracking-[0.2em] mt-2"
+              >
+                Global Consulting Group
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Floating ActionsBar -->
+      <div class="@container -mt-4 mb-8">
+        <div class="gap-4 px-6 grid grid-cols-3">
+          <div
+            id="btnEmail"
+            class="flex flex-col items-center gap-3 bg-white dark:bg-[#1a2632] p-4 rounded-xl shadow-lg border border-slate-100 dark:border-white/5 cursor-pointer hover:scale-105 transition-transform"
+          >
+            <div class="rounded-full bg-primary/10 p-3">
+              <span class="material-symbols-outlined text-primary text-2xl"
+                >mail</span
+              >
+            </div>
+            <p
+              class="text-slate-900 dark:text-white text-xs font-bold uppercase tracking-wider"
+            >
+              Email
+            </p>
+          </div>
+          <div
+            id="btnLinkedin"
+            class="flex flex-col items-center gap-3 bg-primary p-4 rounded-xl shadow-lg shadow-primary/25 cursor-pointer hover:scale-105 transition-transform"
+          >
+            <div class="rounded-full bg-white/20 p-3">
+              <span class="material-symbols-outlined text-white text-2xl"
+                >link</span
+              >
+            </div>
+            <p class="text-white text-xs font-bold uppercase tracking-wider">
+              LinkedIn
+            </p>
+          </div>
+          <div
+            id="btnBook"
+            class="flex flex-col items-center gap-3 bg-white dark:bg-[#1a2632] p-4 rounded-xl shadow-lg border border-slate-100 dark:border-white/5 cursor-pointer hover:scale-105 transition-transform"
+          >
+            <div class="rounded-full bg-primary/10 p-3">
+              <span class="material-symbols-outlined text-primary text-2xl"
+                >calendar_today</span
+              >
+            </div>
+            <p
+              class="text-slate-900 dark:text-white text-xs font-bold uppercase tracking-wider"
+            >
+              Book
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- SectionHeader -->
+      <div class="px-6">
+        <h3
+          class="text-slate-900 dark:text-white text-sm font-bold uppercase tracking-[0.15em] border-l-4 border-primary pl-4 py-1"
+        >
+          Contact Details
+        </h3>
+      </div>
+      <!-- Contact ListItems -->
+      <div class="px-4 py-4 space-y-2">
+        <div
+          class="flex items-center gap-4 bg-white dark:bg-[#1a2632] px-4 min-h-[72px] rounded-xl border border-slate-100 dark:border-white/5 justify-between"
+        >
+          <div class="flex items-center gap-4">
+            <div
+              class="text-primary flex items-center justify-center rounded-lg bg-primary/10 shrink-0 size-12"
+            >
+              <span class="material-symbols-outlined">call</span>
+            </div>
+            <div class="flex flex-col justify-center">
+              <p
+                class="text-slate-900 dark:text-white text-base font-bold leading-normal"
+              >
+                +1 (555) 892-4022
+              </p>
+              <p
+                class="text-slate-500 dark:text-[#92adc9] text-xs font-medium uppercase tracking-tight"
+              >
+                Direct Mobile
+              </p>
+            </div>
+          </div>
+          <div class="shrink-0 cursor-pointer">
+            <div
+              class="text-slate-400 dark:text-slate-500 flex size-7 items-center justify-center"
+            >
+              <span class="material-symbols-outlined">chat_bubble</span>
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex items-center gap-4 bg-white dark:bg-[#1a2632] px-4 min-h-[72px] rounded-xl border border-slate-100 dark:border-white/5 justify-between"
+        >
+          <div class="flex items-center gap-4">
+            <div
+              class="text-primary flex items-center justify-center rounded-lg bg-primary/10 shrink-0 size-12"
+            >
+              <span class="material-symbols-outlined">language</span>
+            </div>
+            <div class="flex flex-col justify-center">
+              <p
+                class="text-slate-900 dark:text-white text-base font-bold leading-normal"
+              >
+                www.globalconsulting.com
+              </p>
+              <p
+                class="text-slate-500 dark:text-[#92adc9] text-xs font-medium uppercase tracking-tight"
+              >
+                Corporate Website
+              </p>
+            </div>
+          </div>
+          <div class="shrink-0">
+            <div
+              class="text-slate-400 dark:text-slate-500 flex size-7 items-center justify-center"
+            >
+              <span class="material-symbols-outlined">open_in_new</span>
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex items-center gap-4 bg-white dark:bg-[#1a2632] px-4 min-h-[72px] rounded-xl border border-slate-100 dark:border-white/5 justify-between"
+        >
+          <div class="flex items-center gap-4">
+            <div
+              class="text-primary flex items-center justify-center rounded-lg bg-primary/10 shrink-0 size-12"
+            >
+              <span class="material-symbols-outlined">location_on</span>
+            </div>
+            <div class="flex flex-col justify-center">
+              <p
+                class="text-slate-900 dark:text-white text-base font-bold leading-normal"
+              >
+                New York, NY
+              </p>
+              <p
+                class="text-slate-500 dark:text-[#92adc9] text-xs font-medium uppercase tracking-tight"
+              >
+                Main HQ Office
+              </p>
+            </div>
+          </div>
+          <div
+            class="shrink-0"
+            data-location="New York City"
+            style="
+              https: //lh3.googleusercontent.com/aida-public/AB6AXuDV7CHtMwk_YwVlPOKnyQkAcg33m_AT37OSRtMVz5N9tBkTPn2N6Oka_sSf450Fes-0O3iUEWAZstRnyDH9NvXoJAloywvhwVJQdnPEukolYbAqI1bsVWebEFOBcqNDMc_5jshJi8IJjsFGNIOH6gN0qU8YuG08s0C2tuda7MWYbvwygTdPY21o4x8m2-855WGXa7a7tOiv34UOxFfUel40e6wmVj6UXA3B925c1pvqQ1aFjxCjmv48tC4pWvCRuJvWNbbhYZEC2lc;
+            "
+          >
+            <div
+              class="text-slate-400 dark:text-slate-500 flex size-7 items-center justify-center"
+            >
+              <span class="material-symbols-outlined">map</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- QR Code Section -->
+      <div
+        class="mt-auto p-6 flex flex-col items-center gap-4 bg-gradient-to-t from-black/20 to-transparent"
+      >
+        <div class="flex flex-col items-center">
+          <p
+            class="text-slate-900 dark:text-white text-xs font-bold uppercase tracking-[0.2em] mb-4"
+          >
+            Scan to Save Contact
+          </p>
+          <div
+            id="qrWidget"
+            class="p-4 bg-white rounded-2xl shadow-2xl cursor-pointer hover:scale-105 transition-transform"
+          >
+            <div class="size-40 bg-white flex items-center justify-center">
+              <img
+                alt="QR Code for digital business card"
+                class="w-full h-full"
+                data-alt="Clean minimalist high contrast QR code for scanning contact details"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuACeIwKl-SwnPwHcMfT0fScK-kR6-Fldlw2rPU9A4D3pG8_mYkhvrMkpWvB38Amz56TsC2S2VMl-HsG0k1jhMCWaPIT1-SE45J4slWMP1vHkaVZjjhv9szSlxO8HT1IqSwFXF6JSKUr8K14Y2_VvSvdDbhuLeKdDaA4wMHBtD1P5gLG8lcIfSUBUJITkDcUZhngWx1y9sPr0Sx36ccoamWiwVZ-HHOY577O4s3uE5c9S58o5xMJ2T9W9TX7rm8s9a0Q4GXrDe0gPYI"
+              />
+            </div>
+          </div>
+        </div>
+        <script src="script.js"></script>
+        <p
+          class="text-slate-400 text-[10px] font-medium uppercase tracking-widest mt-4"
+        >
+          Corporate Digital ID • v2.4
+        </p>
+      </div>
+      <!-- Bottom Spacing for iOS Home Indicator -->
+      <div class="h-8 bg-transparent"></div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Premium Bento Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1313ec",
+              "emerald-accent": "#0bda68",
+              "background-light": "#f6f6f8",
+              "background-dark": "#080814",
+            },
+            fontFamily: {
+              display: ["Manrope", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+              lg: "1rem",
+              xl: "1.5rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .glass {
+        background: rgba(25, 25, 51, 0.4);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      }
+      .glass-bright {
+        background: rgba(19, 19, 236, 0.1);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+      }
+      .inner-glow {
+        box-shadow: inset 0 0 20px rgba(19, 19, 236, 0.2);
+      }
+    </style>
+    <style>
+      body {
+        min-height: max(884px, 100dvh);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark font-display text-white min-h-screen pb-24"
+  >
+    <!-- Top Navigation Bar -->
+    <header
+      class="sticky top-0 z-50 flex items-center justify-between p-6 bg-background-dark/80 backdrop-blur-md"
+    >
+      <div class="flex items-center gap-3">
+        <div
+          class="size-10 rounded-full bg-gradient-to-tr from-primary to-emerald-accent p-[2px]"
+        >
+          <div
+            class="w-full h-full rounded-full bg-background-dark flex items-center justify-center overflow-hidden"
+          >
+            <img
+              class="w-full h-full object-cover"
+              data-alt="User profile portrait"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvQzn9zxh7CaNqe-jFhsMDF8RlPloXOqdFNoclwzNnoiGeu0FrFuM3gV-DZKQ8CTTcE2FRKHcpkD9n0310UIgnB6tZgfY8x9OqqYzKa--QfdmWh_B6UDMRPcQ0ROedDIMOPtnQ05q46knw4__eVZ4OK4uOlyjmbqg52bxK-TjNcnFePgTLAczZN_ADVq1DjYA6Jhi1qysgRc3yRCdqjni-SOrL4lqF38adFjQ-XPoEKMCQIcex4ktkydCwPRsYqmOA43Rw8On_Rsg"
+            />
+          </div>
+        </div>
+        <div>
+          <p
+            class="text-xs text-[#9292c9] font-medium uppercase tracking-wider"
+          >
+            Enterprise Pro
+          </p>
+          <h1 class="text-base font-bold leading-none">Alex Sterling</h1>
+        </div>
+      </div>
+      <div class="flex gap-2">
+        <button
+          class="size-10 flex items-center justify-center glass rounded-full"
+        >
+          <span class="material-symbols-outlined text-[20px]"
+            >notifications</span
+          >
+        </button>
+        <button
+          class="size-10 flex items-center justify-center glass rounded-full"
+        >
+          <span class="material-symbols-outlined text-[20px]">settings</span>
+        </button>
+      </div>
+    </header>
+    <main class="px-4 py-2 space-y-4">
+      <!-- Bento Grid Layout -->
+      <div class="grid grid-cols-2 gap-4">
+        <!-- Central QR Code Widget (Large - 2x2 Span) -->
+        <div
+          class="col-span-2 glass rounded-xl p-6 flex flex-col items-center justify-center relative overflow-hidden inner-glow border-primary/20"
+        >
+          <div class="absolute top-0 right-0 p-4">
+            <span class="flex h-2 w-2 rounded-full bg-emerald-accent"></span>
+          </div>
+          <div
+            class="bg-white p-4 rounded-xl mb-4 shadow-[0_0_30px_rgba(19,19,236,0.4)]"
+          >
+            <img
+              id="qrImage"
+              class="size-32 object-contain"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5WsJrcUMdY36WTM8GUs6XdkWwgVHVMrKUgTrsZ2Y-5UR3zPM7Rs1j7fmkuZggL-V1qNYUvY4RGAfUxJpnxF21vMaLyW-J6hGFm1LsDI-RIhu1U7hcbzXEiM4uxauSrk12hs2Q_0NglFXuza1WFN0Ou5VTKmo3EnySWI84eGzYLvXjsOCT8scOsiAdgNmxUXcoN0HBAt36yY8AJ6uNrxnHd4Dvt2qUByI_5xZ3HJ83VptSFeNtvU3W1iWhCXoJZZ_XcpgsLgy43lU"
+              alt="QR Code"
+            />
+          </div>
+          <h2 class="text-xl font-bold mb-1">Share Professional ID</h2>
+          <p class="text-[#9292c9] text-sm text-center px-6">
+            Tap to expand your dynamic digital business card
+          </p>
+          <div class="mt-4 flex gap-3">
+            <button
+              id="btnShareMain"
+              class="bg-primary px-5 py-2 rounded-lg text-sm font-bold flex items-center gap-2 hover:bg-primary/90 transition-colors"
+            >
+              <span class="material-symbols-outlined text-[18px]">share</span>
+              Share
+            </button>
+            <button
+              id="btnCustomize"
+              class="glass px-5 py-2 rounded-lg text-sm font-bold flex items-center gap-2 border-white/10 hover:bg-white/5 transition-colors"
+            >
+              <span class="material-symbols-outlined text-[18px]">edit</span>
+              Customize
+            </button>
+          </div>
+        </div>
+        <!-- Total Scans (Small 1x1) -->
+        <div
+          class="col-span-1 glass rounded-xl p-5 flex flex-col justify-between h-40"
+        >
+          <div class="flex items-center justify-between">
+            <div class="p-2 rounded-lg bg-primary/20">
+              <span class="material-symbols-outlined text-primary text-[20px]"
+                >visibility</span
+              >
+            </div>
+            <span class="text-emerald-accent text-xs font-bold">+12%</span>
+          </div>
+          <div>
+            <p class="text-3xl font-bold leading-none tracking-tight">1,284</p>
+            <p class="text-[#9292c9] text-xs font-medium mt-1">Total Scans</p>
+          </div>
+        </div>
+        <!-- New Leads (Small 1x1) -->
+        <div
+          class="col-span-1 glass rounded-xl p-5 flex flex-col justify-between h-40"
+        >
+          <div class="flex items-center justify-between">
+            <div class="p-2 rounded-lg bg-emerald-accent/20">
+              <span
+                class="material-symbols-outlined text-emerald-accent text-[20px]"
+                >person_add</span
+              >
+            </div>
+            <span class="text-emerald-accent text-xs font-bold">+5%</span>
+          </div>
+          <div>
+            <p class="text-3xl font-bold leading-none tracking-tight">42</p>
+            <p class="text-[#9292c9] text-xs font-medium mt-1">New Leads</p>
+          </div>
+        </div>
+        <!-- Card Performance (2x1 Span) -->
+        <div class="col-span-2 glass rounded-xl p-5 overflow-hidden">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-bold text-sm">Engagement Trends</h3>
+            <select
+              class="bg-transparent border-none text-[10px] uppercase font-bold text-primary focus:ring-0 cursor-pointer"
+            >
+              <option>Last 7 Days</option>
+              <option>Last 30 Days</option>
+            </select>
+          </div>
+          <div class="h-24 w-full flex items-end justify-between gap-1 px-2">
+            <!-- Fake Chart Bars for visual -->
+            <div class="w-full bg-primary/20 rounded-t-sm h-[40%]"></div>
+            <div class="w-full bg-primary/20 rounded-t-sm h-[65%]"></div>
+            <div class="w-full bg-primary/40 rounded-t-sm h-[50%]"></div>
+            <div class="w-full bg-primary/60 rounded-t-sm h-[80%]"></div>
+            <div class="w-full bg-primary/80 rounded-t-sm h-[60%]"></div>
+            <div class="w-full bg-primary rounded-t-sm h-[100%]"></div>
+            <div class="w-full bg-primary/70 rounded-t-sm h-[75%]"></div>
+          </div>
+        </div>
+        <!-- Recent Contacts (2x1 Span) -->
+        <div class="col-span-2 glass rounded-xl p-5">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-bold text-sm">Recent Connections</h3>
+            <button class="text-primary text-xs font-bold">View All</button>
+          </div>
+          <div class="space-y-3">
+            <div
+              class="flex items-center justify-between glass-bright p-3 rounded-lg"
+            >
+              <div class="flex items-center gap-3">
+                <div
+                  class="size-10 rounded-full bg-center bg-cover border border-white/20"
+                  data-alt="Contact profile image"
+                  style="
+                    background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC5RSUuNqfMhWpKhGNr0hFX-d26-lSmJ7ldhXlpLxA8Ge-qs8ZEQtyLs-n2J2t5gdPRKDgbjtghtlaC53lBS71KSehI18MV2aKSWebLED9hF3kPSPiG34k_d41gxdQIdoDsXkTk8HwRkQ5Hg2pYp3kVoe7QULMew_zSekTpJCDzGKHKz8UxYHYM5JV1oJXwUOKi8lSl3y0TvbK3gfhalkjcOSO1EYw-oFO-uDwEiq5i9iBZzJNZfjGVo8szrkMd3OSPnZNVb5Uiao');
+                  "
+                ></div>
+                <div>
+                  <p class="text-sm font-bold leading-none">Sarah Jenkins</p>
+                  <p class="text-[#9292c9] text-[10px] mt-1">
+                    CTO @ Nexa Systems
+                  </p>
+                </div>
+              </div>
+              <span class="text-[10px] text-[#9292c9]">2h ago</span>
+            </div>
+            <div
+              class="flex items-center justify-between glass-bright p-3 rounded-lg"
+            >
+              <div class="flex items-center gap-3">
+                <div
+                  class="size-10 rounded-full bg-center bg-cover border border-white/20"
+                  data-alt="Contact profile image"
+                  style="
+                    background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBiWkEyx4AGEm9tg22MKzXGDVCFbyFMjj0KqETObG7Qcy9r0O8L1tUrojooN6X-x7tXci3_vkmXYv6mdsaEfND6H9R22wNJr5p51tYoLMUtPe2-1m3vmEycXq3QGSsf4byoCVfLpEdqAzAVwH_RAVyUQB-U7eOwFyHQ9Qbe2kB4zcPRHBCNt66Eu9mFE_laFmIxl9-jOmPROf-Nln1rz4zm0H75cvCtlaTnxnBCr9mS5LxnfCVNrqlx5qwpU69ONErP5RMWH7fWf70');
+                  "
+                ></div>
+                <div>
+                  <p class="text-sm font-bold leading-none">Marcus Thorne</p>
+                  <p class="text-[#9292c9] text-[10px] mt-1">Venture Partner</p>
+                </div>
+              </div>
+              <span class="text-[10px] text-[#9292c9]">5h ago</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- Floating Bottom Navigation -->
+    <nav
+      class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-md h-16 glass rounded-full flex items-center justify-around px-4 z-50 border-white/10"
+    >
+      <button
+        id="navDash"
+        class="flex flex-col items-center justify-center text-primary"
+      >
+        <span class="material-symbols-outlined text-[26px] fill-1"
+          >dashboard</span
+        >
+      </button>
+      <button
+        id="navCard"
+        class="flex flex-col items-center justify-center text-[#9292c9]"
+      >
+        <span class="material-symbols-outlined text-[26px]">credit_card</span>
+      </button>
+      <!-- Center Action Button -->
+      <div
+        id="btnMainAdd"
+        class="-mt-12 bg-primary size-14 rounded-full flex items-center justify-center shadow-[0_8px_20px_rgba(19,19,236,0.4)] border-4 border-background-dark cursor-pointer active:scale-95 transition-transform"
+      >
+        <span class="material-symbols-outlined text-white text-[28px]"
+          >add</span
+        >
+      </div>
+      <button
+        id="navAnalytics"
+        class="flex flex-col items-center justify-center text-[#9292c9]"
+      >
+        <span class="material-symbols-outlined text-[26px]">analytics</span>
+      </button>
+      <button
+        id="navTeam"
+        class="flex flex-col items-center justify-center text-[#9292c9]"
+      >
+        <span class="material-symbols-outlined text-[26px]">groups</span>
+      </button>
+    </nav>
+    <script src="script.js"></script>
+  </body>
+</html>

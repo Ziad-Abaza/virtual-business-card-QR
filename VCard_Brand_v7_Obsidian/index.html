@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Enterprise Card Editor</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#4f46e5",
+              "indigo-glow": "#6366f1",
+              "background-dark": "#020205",
+              obsidian: "#050508",
+              "accent-emerald": "#10b981",
+              "glass-white": "rgba(255, 255, 255, 0.04)",
+              "glass-border": "rgba(255, 255, 255, 0.08)",
+            },
+            fontFamily: {
+              display: ["Manrope", "sans-serif"],
+            },
+            borderRadius: {
+              "2xl": "1.25rem",
+              "3xl": "1.75rem",
+            },
+          },
+        },
+      };
+    </script>
+    <style type="text/tailwindcss">
+      :root {
+        --obsidian-bg: #020205;
+        --indigo-deep: #1e1b4b;
+        --emerald-deep: #064e3b;
+      }
+      body {
+        font-family: "Manrope", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        background-color: var(--obsidian-bg);
+      }
+      .mesh-gradient-bg {
+        background: radial-gradient(
+            circle at 0% 0%,
+            rgba(79, 70, 229, 0.12) 0%,
+            transparent 40%
+          ),
+          radial-gradient(
+            circle at 100% 100%,
+            rgba(16, 185, 129, 0.08) 0%,
+            transparent 40%
+          ),
+          radial-gradient(
+            circle at 50% 10%,
+            rgba(79, 70, 229, 0.05) 0%,
+            transparent 30%
+          );
+        background-attachment: fixed;
+      }
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.5);
+      }
+      .bento-card {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .bento-card:hover {
+        background: rgba(255, 255, 255, 0.04);
+        border-color: rgba(255, 255, 255, 0.12);
+      }
+      .indigo-bloom {
+        box-shadow: 0 0 40px -10px rgba(79, 70, 229, 0.4);
+      }
+      .emerald-bloom {
+        box-shadow: 0 0 30px -10px rgba(16, 185, 129, 0.3);
+      }
+    </style>
+    <style>
+      body {
+        min-height: max(884px, 100dvh);
+      }
+    </style>
+  </head>
+  <body class="dark text-slate-100 min-h-screen selection:bg-indigo-500/30">
+    <div
+      class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden mesh-gradient-bg"
+    >
+      <header
+        class="flex items-center bg-obsidian/40 p-4 pb-2 justify-between sticky top-0 z-50 backdrop-blur-xl border-b border-white/5"
+      >
+        <div
+          class="text-white flex size-10 shrink-0 items-center justify-center cursor-pointer hover:bg-white/5 rounded-full transition-colors"
+        >
+          <span class="material-symbols-outlined !text-[20px]"
+            >chevron_left</span
+          >
+        </div>
+        <h2
+          class="text-white text-base font-bold leading-tight tracking-tight flex-1 text-center font-display uppercase tracking-[0.1em]"
+        >
+          Enterprise Editor
+        </h2>
+        <div class="flex w-10 items-center justify-end">
+          <button
+            class="flex size-10 items-center justify-center rounded-full hover:bg-white/5 transition-colors"
+          >
+            <span
+              class="material-symbols-outlined text-indigo-glow !text-[20px]"
+              >tune</span
+            >
+          </button>
+        </div>
+      </header>
+      <nav class="px-6 mt-4">
+        <div class="flex bg-white/[0.03] p-1 rounded-2xl border border-white/5">
+          <button
+            class="flex-1 py-2 text-[11px] font-bold uppercase tracking-wider text-white bg-white/10 rounded-xl border border-white/10"
+          >
+            Design
+          </button>
+          <button
+            class="flex-1 py-2 text-[11px] font-bold uppercase tracking-wider text-slate-500 hover:text-slate-300"
+          >
+            Content
+          </button>
+          <button
+            class="flex-1 py-2 text-[11px] font-bold uppercase tracking-wider text-slate-500 hover:text-slate-300"
+          >
+            Insights
+          </button>
+        </div>
+      </nav>
+      <main class="flex-1 px-4 py-6 space-y-8 pb-32">
+        <section class="relative">
+          <div
+            class="absolute -inset-4 bg-indigo-glow/10 blur-[60px] rounded-full pointer-events-none"
+          ></div>
+          <div
+            class="glass-panel w-full aspect-[1.6/1] rounded-3xl p-6 flex flex-col justify-between relative overflow-hidden indigo-bloom"
+          >
+            <div
+              class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-indigo-glow/5 to-transparent"
+            ></div>
+            <div class="flex justify-between items-start relative z-10">
+              <div
+                class="size-14 rounded-2xl bg-white/10 flex items-center justify-center border border-white/10 shadow-inner"
+              >
+                <span
+                  class="material-symbols-outlined text-indigo-glow !text-3xl"
+                  >cloud_done</span
+                >
+              </div>
+              <div class="text-right">
+                <span
+                  class="inline-flex items-center px-3 py-1 rounded-full bg-accent-emerald/10 border border-accent-emerald/20 text-[10px] font-bold text-accent-emerald uppercase tracking-widest"
+                >
+                  <span
+                    class="size-1.5 rounded-full bg-accent-emerald mr-2 shadow-[0_0_8px_rgba(16,185,129,0.8)]"
+                  ></span>
+                  Secure
+                </span>
+              </div>
+            </div>
+            <div class="relative z-10">
+              <p
+                class="text-indigo-glow/70 text-[11px] font-extrabold tracking-[0.2em] uppercase mb-1"
+              >
+                Chief Design Officer
+              </p>
+              <h1
+                class="text-white text-3xl font-extrabold tracking-tight leading-none mb-1"
+              >
+                Julian Pierce
+              </h1>
+              <p class="text-slate-400 font-medium text-sm">
+                Lumina Global Ventures
+              </p>
+            </div>
+            <div
+              class="absolute inset-0 opacity-10 pointer-events-none"
+              style="
+                background-image: radial-gradient(
+                  rgba(255, 255, 255, 0.2) 1px,
+                  transparent 1px
+                );
+                background-size: 20px 20px;
+              "
+            ></div>
+          </div>
+          <div class="flex justify-center mt-6">
+            <button
+              class="flex items-center gap-2 text-slate-400 font-bold text-[11px] uppercase tracking-widest bg-white/5 px-6 py-2.5 rounded-full border border-white/10 active:scale-95 transition-all"
+            >
+              <span class="material-symbols-outlined !text-sm text-indigo-glow"
+                >refresh</span
+              >
+              Rotate Visualizer
+            </button>
+          </div>
+        </section>
+        <section class="space-y-4">
+          <div class="flex items-center justify-between px-2">
+            <h3 class="text-white text-lg font-bold font-display">Structure</h3>
+            <span
+              class="text-accent-emerald text-[10px] font-black uppercase tracking-widest flex items-center gap-1.5"
+            >
+              <span
+                class="size-1 rounded-full bg-accent-emerald animate-pulse"
+              ></span>
+              Cloud Synced
+            </span>
+          </div>
+          <div class="grid grid-cols-6 grid-rows-2 gap-4">
+            <div
+              class="col-span-4 row-span-1 bento-card rounded-3xl p-5 flex flex-col justify-between group"
+            >
+              <div class="flex items-center justify-between">
+                <div
+                  class="size-10 rounded-xl bg-indigo-glow/10 flex items-center justify-center text-indigo-glow group-hover:bg-indigo-glow/20 transition-colors"
+                >
+                  <span class="material-symbols-outlined !text-xl">badge</span>
+                </div>
+                <span class="material-symbols-outlined text-slate-600 text-sm"
+                  >north_east</span
+                >
+              </div>
+              <div class="mt-4">
+                <p class="text-white text-sm font-bold">Identity Hub</p>
+                <div
+                  class="w-full bg-white/5 h-1 rounded-full mt-2 overflow-hidden"
+                >
+                  <div class="bg-indigo-glow h-full w-[85%]"></div>
+                </div>
+              </div>
+            </div>
+            <div
+              id="btnGateway"
+              class="col-span-2 row-span-1 bento-card rounded-3xl p-5 flex flex-col items-center justify-center gap-2 group cursor-pointer emerald-bloom hover:border-accent-emerald/30"
+            >
+              <div
+                class="size-12 bg-accent-emerald/10 rounded-2xl flex items-center justify-center border border-accent-emerald/20 group-hover:scale-110 transition-transform"
+              >
+                <span
+                  class="material-symbols-outlined text-accent-emerald !text-2xl"
+                  >qr_code_scanner</span
+                >
+              </div>
+              <p
+                class="text-slate-300 text-[9px] font-black uppercase tracking-tighter"
+              >
+                Gateway
+              </p>
+            </div>
+            <div
+              class="col-span-2 row-span-1 bento-card rounded-3xl p-5 flex flex-col justify-center gap-4"
+            >
+              <div class="flex gap-2">
+                <div
+                  class="size-8 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center"
+                >
+                  <span
+                    class="material-symbols-outlined !text-sm text-slate-300"
+                    >link</span
+                  >
+                </div>
+                <div
+                  class="size-8 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center"
+                >
+                  <span
+                    class="material-symbols-outlined !text-sm text-slate-300"
+                    >alternate_email</span
+                  >
+                </div>
+              </div>
+              <p
+                class="text-slate-400 text-[10px] font-bold uppercase tracking-widest"
+              >
+                Connect
+              </p>
+            </div>
+            <div
+              class="col-span-4 row-span-1 bento-card bg-gradient-to-br from-indigo-glow/10 via-transparent to-transparent rounded-3xl p-5 flex items-center justify-between border-l-2 border-l-indigo-glow/40"
+            >
+              <div class="space-y-1">
+                <p class="text-white text-sm font-bold">Theme Engine</p>
+                <p
+                  class="text-indigo-glow/60 text-[10px] font-bold uppercase tracking-wider"
+                >
+                  Obsidian &amp; Indigo
+                </p>
+              </div>
+              <div class="flex -space-x-2">
+                <div
+                  class="size-7 rounded-full border-2 border-obsidian bg-indigo-600 shadow-lg shadow-indigo-600/30"
+                ></div>
+                <div
+                  class="size-7 rounded-full border-2 border-obsidian bg-accent-emerald shadow-lg shadow-accent-emerald/30"
+                ></div>
+                <div
+                  class="size-7 rounded-full border-2 border-obsidian bg-slate-800"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-4 mt-6">
+            <div class="relative group aspect-square">
+              <div
+                class="absolute inset-0 bento-card rounded-3xl overflow-hidden p-1.5"
+              >
+                <div
+                  class="w-full h-full bg-cover bg-center rounded-[22px] grayscale-[0.5] group-hover:grayscale-0 transition-all duration-500"
+                  style="
+                    background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDiC-dsjAxqtnllwyeneU8LX6K8JRwiisu7n9G1ZmxKsHbAoeLJ5kmCYb_UwjmReX9vhOj4oj38qhj82hq1joTmRA0eAbMxvztjdLnIVBaTyAhk_GtU2G26zvcAMnnN4FjnY6hER45h1KtnnO6o8nKW9WDcIFruwWjAWbc1sTRjjNneOJaVND-QZzFXNQkhqKs_BZCS_E_tBpyK17T6KVN8LQqG-43PcfJrcQhoI_J0XddtRhShW4qj9BMUfenKHPjeCnLr4FRYa5I');
+                  "
+                ></div>
+              </div>
+              <div
+                class="absolute bottom-3 left-3 right-3 glass-panel py-2 px-3 rounded-xl flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity"
+              >
+                <span class="text-[9px] font-bold uppercase text-white"
+                  >Logo</span
+                >
+                <span
+                  class="material-symbols-outlined !text-xs text-indigo-glow"
+                  >edit</span
+                >
+              </div>
+            </div>
+            <div class="relative group aspect-square">
+              <div
+                class="absolute inset-0 bento-card rounded-3xl overflow-hidden p-1.5"
+              >
+                <div
+                  class="w-full h-full bg-cover bg-center rounded-[22px] grayscale-[0.5] group-hover:grayscale-0 transition-all duration-500"
+                  style="
+                    background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDHyikY8I12qt0a1Wg22-wkgNBcCvDFBXpNpIFk1vcz3hDdfOKY61V1-cNy7Cral6jG-kDoUKuQ3pqXnFuKt5uZccG3LpsPj0eAmyw2hxxuSUMP_W053GF7QVCRad3GNj_lLotiPEmaUh8ZrV1X0gXg4Rw6NTKWIxUnRJoOd5anhDL6kLi2cRub_dZXsS_wmr9XN1RGXobmyIZtpvJZitN6i6ymUbCu-IzWpMJe23tcEvpuwtAm3E8UF3Z-IMUo6OZtq6d39BeyWTg');
+                  "
+                ></div>
+              </div>
+              <div
+                class="absolute bottom-3 left-3 right-3 glass-panel py-2 px-3 rounded-xl flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity"
+              >
+                <span class="text-[9px] font-bold uppercase text-white"
+                  >Profile</span
+                >
+                <span
+                  class="material-symbols-outlined !text-xs text-indigo-glow"
+                  >camera</span
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <div class="fixed bottom-0 left-0 right-0 p-6 z-50">
+        <div class="max-w-md mx-auto">
+          <button
+            class="w-full bg-indigo-glow hover:bg-indigo-500 text-white font-black py-4 rounded-[24px] flex items-center justify-center gap-3 shadow-[0_20px_40px_-10px_rgba(79,70,229,0.5)] transition-all active:scale-[0.96] border-t border-white/20"
+          >
+            <span class="uppercase tracking-[0.15em] text-sm"
+              >Publish to Network</span
+            >
+            <span class="material-symbols-outlined !text-[20px] fill-1"
+              >rocket_launch</span
+            >
+          </button>
+        </div>
+        <div class="h-4"></div>
+      </div>
+      <div
+        class="fixed bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-obsidian via-obsidian/90 to-transparent pointer-events-none z-40"
+      ></div>
+    </div>
+  </body>
+</html>

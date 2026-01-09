@@ -52,6 +52,87 @@ const templates = [
         image: './gallery_assets/VCard_Social_v1_Influencer.png',
         desc: 'Designed for social media stars. Linktree style with advanced visuals and social feed integration.',
         tags: ['Social', 'Links', 'Mobile-First']
+    },
+    {
+        id: 'social-v2',
+        title: 'Influencer Pro',
+        category: 'social',
+        path: './VCard_Social_v2_Influencer/index.html',
+        image: './gallery_assets/VCard_Social_v2_Influencer.png',
+        desc: 'Vibrant, high-energy design for content creators. Features dynamic animations and social-first layout.',
+        tags: ['Influencer', 'Vibrant', 'Social']
+    },
+    {
+        id: 'brand-v3',
+        title: 'Executive Spec',
+        category: 'brand',
+        path: './VCard_Brand_v3_Corporate/index.html',
+        image: './gallery_assets/VCard_Brand_v3_Corporate.png',
+        desc: 'Top-tier corporate elegance. Dark mode glassmorphism with premium metallic accents.',
+        tags: ['Executive', 'Dark', 'Premium']
+    },
+    {
+        id: 'personal-v3',
+        title: 'Neural access',
+        category: 'personal',
+        path: './VCard_Personal_v3_Cyber/index.html',
+        image: './gallery_assets/VCard_Personal_v3_Cyber.png',
+        desc: 'Cyberpunk-inspired digital vault. Bento grid layout with holographic encryption visuals.',
+        tags: ['Cyber', 'Tech', 'Dark']
+    },
+    {
+        id: 'brand-v4',
+        title: 'Lumina Tech',
+        category: 'brand',
+        path: './VCard_Brand_v4_Lumina/index.html',
+        image: './gallery_assets/VCard_Brand_v4_Lumina.png',
+        desc: 'Futuristic dashboard for tech brands. Features a 3D flying card and live network map.',
+        tags: ['Future', 'Dashboard', 'Emerald']
+    },
+    {
+        id: 'brand-v5',
+        title: 'Corporate Standard',
+        category: 'brand',
+        path: './VCard_Brand_v5_CorporateStandard/index.html',
+        image: './gallery_assets/VCard_Brand_v5_CorporateStandard.png',
+        desc: 'Clean, professional digital business card optimized for corporate identity and clarity.',
+        tags: ['Corporate', 'Minimal', 'Blue']
+    },
+    {
+        id: 'brand-v6',
+        title: 'Enterprise Dark',
+        category: 'brand',
+        path: './VCard_Brand_v6_EnterpriseDark/index.html',
+        image: './gallery_assets/VCard_Brand_v6_EnterpriseDark.png',
+        desc: 'Dark mode editor interface for enterprise card management. Sleek and productive.',
+        tags: ['Enterprise', 'Editor', 'Dark']
+    },
+    {
+        id: 'brand-v7',
+        title: 'Obsidian Access',
+        category: 'brand',
+        path: './VCard_Brand_v7_Obsidian/index.html',
+        image: './gallery_assets/VCard_Brand_v7_Obsidian.png',
+        desc: 'Ultra-premium dark theme with deep indigo glows. Exclusive access vibe.',
+        tags: ['Obsidian', 'Dark', 'Premium']
+    },
+    {
+        id: 'brand-v8',
+        title: 'Bento Dark Pro',
+        category: 'brand',
+        path: './VCard_Brand_v8_BentoDark/index.html',
+        image: './gallery_assets/VCard_Brand_v8_BentoDark.png',
+        desc: 'Data-rich bento grid layout in dark mode. Perfect for showing analytics and stats.',
+        tags: ['Bento', 'Grid', 'Analytics']
+    },
+    {
+        id: 'brand-v9',
+        title: 'Bento Light Pro',
+        category: 'brand',
+        path: './VCard_Brand_v9_BentoLight/index.html',
+        image: './gallery_assets/VCard_Brand_v9_BentoLight.png',
+        desc: 'Clean, airy bento grid layout. High contrast and easy readability for data.',
+        tags: ['Bento', 'Light', 'Clean']
     }
 ];
 

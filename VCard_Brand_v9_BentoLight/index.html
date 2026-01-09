@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Premium Bento Dashboard - Light Mode</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#312e81",
+              "primary-accent": "#4338ca",
+              "emerald-accent": "#059669",
+              "background-light": "#f8fafc",
+              "text-main": "#1e293b",
+              "text-muted": "#64748b",
+            },
+            fontFamily: {
+              display: ["Manrope", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+              lg: "1rem",
+              xl: "1.5rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style type="text/tailwindcss">
+      :root {
+        --glass-bg: rgba(255, 255, 255, 0.7);
+        --glass-border: rgba(255, 255, 255, 0.5);
+        --widget-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05),
+          0 8px 10px -6px rgba(0, 0, 0, 0.05);
+      }
+      .glass {
+        background: var(--glass-bg);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid var(--glass-border);
+        box-shadow: var(--widget-shadow);
+      }
+      .glass-bright {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(255, 255, 255, 1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+      }
+      .floating-widget {
+        transition: transform 0.3s ease;
+      }
+      .floating-widget:active {
+        transform: scale(0.98);
+      }
+    </style>
+    <style>
+      body {
+        min-height: max(884px, 100dvh);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background-light font-display text-text-main min-h-screen pb-24"
+  >
+    <header
+      class="sticky top-0 z-50 flex items-center justify-between p-6 bg-background-light/80 backdrop-blur-md"
+    >
+      <div class="flex items-center gap-3">
+        <div
+          class="size-11 rounded-full bg-gradient-to-tr from-primary-accent to-emerald-accent p-[2px] shadow-sm"
+        >
+          <div
+            class="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden"
+          >
+            <img
+              class="w-full h-full object-cover"
+              data-alt="User profile portrait"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvQzn9zxh7CaNqe-jFhsMDF8RlPloXOqdFNoclwzNnoiGeu0FrFuM3gV-DZKQ8CTTcE2FRKHcpkD9n0310UIgnB6tZgfY8x9OqqYzKa--QfdmWh_B6UDMRPcQ0ROedDIMOPtnQ05q46knw4__eVZ4OK4uOlyjmbqg52bxK-TjNcnFePgTLAczZN_ADVq1DjYA6Jhi1qysgRc3yRCdqjni-SOrL4lqF38adFjQ-XPoEKMCQIcex4ktkydCwPRsYqmOA43Rw8On_Rsg"
+            />
+          </div>
+        </div>
+        <div>
+          <p
+            class="text-[10px] text-emerald-accent font-bold uppercase tracking-widest"
+          >
+            Enterprise Pro
+          </p>
+          <h1 class="text-base font-extrabold leading-none text-slate-900">
+            Alex Sterling
+          </h1>
+        </div>
+      </div>
+      <div class="flex gap-2">
+        <button
+          id="btnNotif"
+          class="size-10 flex items-center justify-center glass rounded-full text-slate-600 hover:text-primary transition-colors"
+        >
+          <span class="material-symbols-outlined text-[22px]"
+            >notifications</span
+          >
+        </button>
+        <button
+          id="btnSettings"
+          class="size-10 flex items-center justify-center glass rounded-full text-slate-600 hover:text-primary transition-colors"
+        >
+          <span class="material-symbols-outlined text-[22px]">settings</span>
+        </button>
+      </div>
+    </header>
+    <main class="px-4 py-2 space-y-4">
+      <div class="grid grid-cols-2 gap-4">
+        <div
+          class="col-span-2 glass rounded-2xl p-6 flex flex-col items-center justify-center relative overflow-hidden border-white/60"
+        >
+          <div class="absolute top-0 right-0 p-4">
+            <span
+              class="flex h-2.5 w-2.5 rounded-full bg-emerald-accent animate-pulse"
+            ></span>
+          </div>
+          <div
+            class="bg-white p-5 rounded-2xl mb-5 shadow-[0_15px_35px_rgba(49,46,129,0.12)]"
+          >
+            <img
+              id="qrImage"
+              class="size-32 object-contain"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5WsJrcUMdY36WTM8GUs6XdkWwgVHVMrKUgTrsZ2Y-5UR3zPM7Rs1j7fmkuZggL-V1qNYUvY4RGAfUxJpnxF21vMaLyW-J6hGFm1LsDI-RIhu1U7hcbzXEiM4uxauSrk12hs2Q_0NglFXuza1WFN0Ou5VTKmo3EnySWI84eGzYLvXjsOCT8scOsiAdgNmxUXcoN0HBAt36yY8AJ6uNrxnHd4Dvt2qUByI_5xZ3HJ83VptSFeNtvU3W1iWhCXoJZZ_XcpgsLgy43lU"
+              alt="QR Code"
+            />
+          </div>
+          <h2 class="text-xl font-extrabold mb-1 text-slate-900">
+            Share Professional ID
+          </h2>
+          <p class="text-text-muted text-sm text-center px-4">
+            Instant sharing via dynamic NFC and QR profile
+          </p>
+          <div class="mt-6 flex gap-3 w-full max-w-xs">
+            <button
+              id="btnShare"
+              class="flex-1 bg-primary text-white px-5 py-3 rounded-xl text-sm font-bold flex items-center justify-center gap-2 shadow-lg shadow-primary/20 hover:bg-primary-accent transition-colors"
+            >
+              <span class="material-symbols-outlined text-[18px] fill-1"
+                >share</span
+              >
+              Share
+            </button>
+            <button
+              id="btnEdit"
+              class="flex-1 bg-white border border-slate-200 text-slate-700 px-5 py-3 rounded-xl text-sm font-bold flex items-center justify-center gap-2 shadow-sm hover:bg-slate-50 transition-colors"
+            >
+              <span class="material-symbols-outlined text-[18px]">edit</span>
+              Edit
+            </button>
+          </div>
+        </div>
+        <div
+          class="col-span-1 glass rounded-2xl p-5 flex flex-col justify-between h-40 floating-widget"
+        >
+          <div class="flex items-center justify-between">
+            <div class="p-2.5 rounded-xl bg-primary/10 text-primary">
+              <span class="material-symbols-outlined text-[22px] fill-1"
+                >monitoring</span
+              >
+            </div>
+            <span
+              class="text-emerald-accent text-xs font-bold bg-emerald-50 px-2 py-1 rounded-full"
+              >+12.4%</span
+            >
+          </div>
+          <div>
+            <p
+              class="text-3xl font-extrabold leading-none tracking-tight text-slate-900"
+            >
+              1,284
+            </p>
+            <p
+              class="text-text-muted text-[11px] font-bold uppercase tracking-wider mt-2"
+            >
+              Total Scans
+            </p>
+          </div>
+        </div>
+        <div
+          class="col-span-1 glass rounded-2xl p-5 flex flex-col justify-between h-40 floating-widget"
+        >
+          <div class="flex items-center justify-between">
+            <div
+              class="p-2.5 rounded-xl bg-emerald-accent/10 text-emerald-accent"
+            >
+              <span class="material-symbols-outlined text-[22px] fill-1"
+                >group_add</span
+              >
+            </div>
+            <span
+              class="text-emerald-accent text-xs font-bold bg-emerald-50 px-2 py-1 rounded-full"
+              >+5.2%</span
+            >
+          </div>
+          <div>
+            <p
+              class="text-3xl font-extrabold leading-none tracking-tight text-slate-900"
+            >
+              42
+            </p>
+            <p
+              class="text-text-muted text-[11px] font-bold uppercase tracking-wider mt-2"
+            >
+              New Connections
+            </p>
+          </div>
+        </div>
+        <div class="col-span-2 glass rounded-2xl p-5 overflow-hidden">
+          <div class="flex items-center justify-between mb-5">
+            <h3 class="font-bold text-sm text-slate-800">Engagement Trends</h3>
+            <div
+              class="flex items-center gap-1 text-[11px] font-bold text-primary bg-primary/5 px-2 py-1 rounded-lg"
+            >
+              <span>LAST 7 DAYS</span>
+              <span class="material-symbols-outlined text-[14px]"
+                >expand_more</span
+              >
+            </div>
+          </div>
+          <div class="h-28 w-full flex items-end justify-between gap-2 px-1">
+            <div class="w-full bg-slate-200 rounded-t-lg h-[40%]"></div>
+            <div class="w-full bg-slate-200 rounded-t-lg h-[65%]"></div>
+            <div class="w-full bg-primary/30 rounded-t-lg h-[50%]"></div>
+            <div class="w-full bg-primary/50 rounded-t-lg h-[80%]"></div>
+            <div class="w-full bg-primary/70 rounded-t-lg h-[60%]"></div>
+            <div class="w-full bg-primary rounded-t-lg h-[100%]"></div>
+            <div class="w-full bg-primary/80 rounded-t-lg h-[75%]"></div>
+          </div>
+        </div>
+        <div class="col-span-2 glass rounded-2xl p-5 mb-4">
+          <div class="flex items-center justify-between mb-5">
+            <h3 class="font-bold text-sm text-slate-800">Recent Connections</h3>
+            <button class="text-primary text-xs font-bold hover:underline">
+              View All
+            </button>
+          </div>
+          <div class="space-y-3">
+            <div
+              class="flex items-center justify-between glass-bright p-3.5 rounded-xl border border-slate-100"
+            >
+              <div class="flex items-center gap-3">
+                <div
+                  class="size-11 rounded-full bg-center bg-cover border-2 border-white shadow-sm"
+                  data-alt="Contact profile image"
+                  style="
+                    background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC5RSUuNqfMhWpKhGNr0hFX-d26-lSmJ7ldhXlpLxA8Ge-qs8ZEQtyLs-n2J2t5gdPRKDgbjtghtlaC53lBS71KSehI18MV2aKSWebLED9hF3kPSPiqG34k_d41gxdQIdoDsXkTk8HwRkQ5Hg2pYp3kVoe7QULMew_zSekTpJCDzGKHKz8UxYHYM5JV1oJXwUOKi8lSl3y0TvbK3gfhalkjcOSO1EYw-oFO-uDwEiq5i9iBZzJNZfjGVo8szrkMd3OSPnZNVb5Uiao');
+                  "
+                ></div>
+                <div>
+                  <p class="text-sm font-bold leading-none text-slate-900">
+                    Sarah Jenkins
+                  </p>
+                  <p class="text-text-muted text-[11px] mt-1">
+                    CTO @ Nexa Systems
+                  </p>
+                </div>
+              </div>
+              <span
+                class="text-[10px] font-medium text-text-muted bg-slate-100 px-2 py-1 rounded"
+                >2h ago</span
+              >
+            </div>
+            <div
+              class="flex items-center justify-between glass-bright p-3.5 rounded-xl border border-slate-100"
+            >
+              <div class="flex items-center gap-3">
+                <div
+                  class="size-11 rounded-full bg-center bg-cover border-2 border-white shadow-sm"
+                  data-alt="Contact profile image"
+                  style="
+                    background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBiWkEyx4AGEm9tg22MKXGDVCFbyFMjj0KqETObG7Qcy9r0O8L1tUrojooN6X-x7tXci3_vkmXYv6mdsaEfND6H9R22wNJr5p51tYoLMUtPe2-1m3vmEycXq3QGSsf4byoCVfLpEdqAzAVwH_RAVyUQB-U7eOwFyHQ9Qbe2kB4zcPRHBCNt66Eu9mFE_laFmIxl9-jOmPROf-Nln1rz4zm0H75cvCtlaTnxnBCr9mS5LxnfCVNrqlx5qwpU69ONErP5RMWH7fWf70');
+                  "
+                ></div>
+                <div>
+                  <p class="text-sm font-bold leading-none text-slate-900">
+                    Marcus Thorne
+                  </p>
+                  <p class="text-text-muted text-[11px] mt-1">
+                    Venture Partner
+                  </p>
+                </div>
+              </div>
+              <span
+                class="text-[10px] font-medium text-text-muted bg-slate-100 px-2 py-1 rounded"
+                >5h ago</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <nav
+      class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[92%] max-w-md h-18 glass rounded-[2rem] flex items-center justify-around px-2 z-50 border-white/80 shadow-2xl"
+    >
+      <button
+        id="navDash"
+        class="flex flex-col items-center justify-center text-primary w-12 h-12"
+      >
+        <span class="material-symbols-outlined text-[28px] fill-1"
+          >grid_view</span
+        >
+      </button>
+      <button
+        id="navContact"
+        class="flex flex-col items-center justify-center text-slate-400 w-12 h-12"
+      >
+        <span class="material-symbols-outlined text-[28px]">contactless</span>
+      </button>
+      <div class="relative">
+        <div
+          id="btnMainAdd"
+          class="-mt-14 bg-primary size-14 rounded-full flex items-center justify-center shadow-xl shadow-primary/30 border-4 border-background-light active:scale-95 transition-transform cursor-pointer"
+        >
+          <span
+            class="material-symbols-outlined text-white text-[32px] font-bold"
+            >add</span
+          >
+        </div>
+      </div>
+      <button
+        id="navLeaderboard"
+        class="flex flex-col items-center justify-center text-slate-400 w-12 h-12"
+      >
+        <span class="material-symbols-outlined text-[28px]">leaderboard</span>
+      </button>
+      <button
+        id="navContacts"
+        class="flex flex-col items-center justify-center text-slate-400 w-12 h-12"
+      >
+        <span class="material-symbols-outlined text-[28px]">contacts</span>
+      </button>
+    </nav>
+    <script src="script.js"></script>
+  </body>
+</html>
