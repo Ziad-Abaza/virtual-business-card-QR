@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Premium Card Vault</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#13ec5b",
+              "background-light": "#f6f8f6",
+              "background-dark": "#080c09", // Deeper dark for the "void" effect
+              "indigo-void": "#0a0a1f",
+            },
+            fontFamily: {
+              display: ["Space Grotesk", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Space Grotesk", sans-serif;
+        overflow-x: hidden;
+        background: radial-gradient(circle at 50% 0%, #102216 0%, #080c09 100%);
+      }
+      .glass-slab {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+      }
+      .glass-slab-emerald {
+        background: rgba(19, 236, 91, 0.05);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(19, 236, 91, 0.2);
+        box-shadow: 0 0 20px rgba(19, 236, 91, 0.1);
+      }
+      .emerald-glow {
+        box-shadow: 0 0 30px rgba(19, 236, 91, 0.4);
+      }
+      .indigo-aura {
+        background: radial-gradient(
+          circle,
+          rgba(79, 70, 229, 0.15) 0%,
+          transparent 70%
+        );
+      }
+      .mesh-bg {
+        background-image: radial-gradient(
+          circle at 2px 2px,
+          rgba(255, 255, 255, 0.05) 1px,
+          transparent 0
+        );
+        background-size: 24px 24px;
+      }
+      .metal-shine {
+        background: linear-gradient(
+          135deg,
+          #ffffff 0%,
+          #a1a1aa 50%,
+          #ffffff 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    </style>
+    <style>
+      body {
+        min-height: max(884px, 100dvh);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen font-display"
+  >
+    <!-- Background Auras -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden">
+      <div
+        class="absolute -top-20 -left-20 w-96 h-96 indigo-aura opacity-50"
+      ></div>
+      <div
+        class="absolute top-1/2 -right-20 w-80 h-80 indigo-aura opacity-30"
+      ></div>
+      <div
+        class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-1/2 bg-gradient-to-t from-primary/10 to-transparent"
+      ></div>
+      <div class="absolute inset-0 mesh-bg opacity-20"></div>
+    </div>
+    <!-- Main Mobile Layout Container -->
+    <main
+      class="relative max-w-md mx-auto min-h-screen px-6 pt-12 pb-32 flex flex-col"
+    >
+      <!-- Top Navigation -->
+      <header class="flex justify-between items-center mb-8">
+        <div class="flex flex-col">
+          <span
+            class="text-[10px] uppercase tracking-[0.3em] text-primary/70 font-bold"
+            >Encrypted Vault</span
+          >
+          <h1 class="text-2xl font-bold tracking-tight metal-shine">
+            NEURAL CARD
+          </h1>
+        </div>
+        <button
+          id="btnAccount"
+          class="w-10 h-10 rounded-full glass-slab flex items-center justify-center border border-white/10 hover:bg-white/10 transition-colors"
+        >
+          <span class="material-icons text-white text-lg">account_circle</span>
+        </button>
+      </header>
+      <!-- Bento Grid -->
+      <div class="grid grid-cols-2 grid-rows-6 gap-4 flex-grow h-full">
+        <!-- Hero QR Code Section (Large 2x2) -->
+        <div
+          id="qrWidget"
+          class="col-span-2 row-span-2 glass-slab-emerald rounded-xl p-6 flex flex-col items-center justify-center relative overflow-hidden group cursor-pointer animate-init animate-fade-in-up"
+        >
+          <div class="absolute top-0 right-0 p-3">
+            <span class="material-icons text-primary text-sm">security</span>
+          </div>
+          <div
+            class="w-32 h-32 bg-primary/10 rounded-lg flex items-center justify-center mb-4 relative border border-primary/20 group-hover:scale-105 transition-transform duration-500"
+          >
+            <img
+              alt="Emerald Digital Business Card QR Code"
+              class="w-24 h-24 emerald-glow rounded-sm"
+              data-alt="A glowing emerald green QR code on dark background"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfpYr23rAHOgWs0VN0wDT_4R79p0l8QP6lMG5D59m8yrGYQO5I051e2OEplNiicUE9IV-1xJtpkRJvKVBmKSyluQjKs7eN3KXcQ5c427P3NWdR6ZiiU9rs5NUAtRp3rUZhYMZiT9UZfbW3hUaEJWcbQt3NuqkACBGZ5MVVvEQOqmEb4cXeV90JfoAto1OWeaFeJZFOY6Ryd-Sa7v5LVQN-ZZb5PPW9VTxsbGu2TT_eCSx5FbP0pVCDUKMK1QXAnqvHN5j08yTGW0g"
+            />
+          </div>
+          <div class="text-center">
+            <p class="text-xs tracking-[0.2em] text-white/50 uppercase mb-1">
+              Your Access Node
+            </p>
+            <p class="text-lg font-bold text-white tracking-wide">
+              ALEXANDER ROLAND
+            </p>
+            <p
+              class="text-[10px] text-primary font-medium tracking-widest uppercase"
+            >
+              Senior Tech Architect
+            </p>
+          </div>
+        </div>
+        <!-- Stats Card (1x1) -->
+        <div
+          class="col-span-1 row-span-1 glass-slab rounded-xl p-4 flex flex-col justify-between animate-init animate-fade-in-up-delay-1 hover:bg-white/5 transition-colors"
+        >
+          <span class="material-icons text-primary/60 text-lg">bolt</span>
+          <div>
+            <span class="text-2xl font-bold text-white tracking-tighter"
+              >1.2k</span
+            >
+            <p class="text-[10px] text-white/40 uppercase tracking-widest">
+              Network Reach
+            </p>
+          </div>
+        </div>
+        <!-- Capacity Card (1x1) -->
+        <div
+          class="col-span-1 row-span-1 glass-slab rounded-xl p-4 flex flex-col justify-between border-l-2 border-l-primary/30 animate-init animate-fade-in-up-delay-1 hover:bg-white/5 transition-colors"
+        >
+          <span class="material-icons text-primary/60 text-lg">storage</span>
+          <div>
+            <div class="flex items-baseline gap-1">
+              <span class="text-2xl font-bold text-white tracking-tighter"
+                >32</span
+              >
+              <span class="text-xs text-white/30 tracking-tighter">/ 100</span>
+            </div>
+            <p class="text-[10px] text-white/40 uppercase tracking-widest">
+              Vault Slots
+            </p>
+          </div>
+        </div>
+        <!-- Featured Card (2x1) - Horizontal Glass Slab -->
+        <div
+          class="col-span-2 row-span-1 glass-slab rounded-xl p-5 flex items-center gap-4 relative overflow-hidden animate-init animate-fade-in-up-delay-2 hover:bg-white/5 transition-colors"
+        >
+          <div
+            class="absolute -right-4 -top-4 w-20 h-20 bg-primary/5 blur-2xl rounded-full"
+          ></div>
+          <div
+            class="w-12 h-12 rounded-lg bg-gradient-to-br from-white/10 to-white/5 border border-white/20 flex items-center justify-center"
+          >
+            <span class="material-icons text-white/80">diamond</span>
+          </div>
+          <div class="flex-grow">
+            <div class="flex justify-between items-start">
+              <h3 class="text-white font-semibold text-sm tracking-wide">
+                CYBERDYNE SYSTEMS
+              </h3>
+              <span
+                class="text-[10px] px-2 py-0.5 rounded-full bg-primary/20 text-primary border border-primary/30"
+                >PREMIUM</span
+              >
+            </div>
+            <p class="text-xs text-white/40 tracking-tight">
+              Lead AI Strategist — Sarah Connor
+            </p>
+          </div>
+        </div>
+        <!-- Recently Scanned (1x2) - Vertical Slab -->
+        <div
+          class="col-span-1 row-span-2 glass-slab rounded-xl p-5 flex flex-col justify-between overflow-hidden relative animate-init animate-fade-in-up-delay-3 hover:bg-white/5 transition-colors"
+        >
+          <div
+            class="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent"
+          ></div>
+          <div class="space-y-4">
+            <div
+              class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center"
+            >
+              <span class="material-icons text-white text-base"
+                >person_add</span
+              >
+            </div>
+            <div>
+              <p
+                class="text-[10px] text-white/40 uppercase tracking-widest mb-1"
+              >
+                Recent Contact
+              </p>
+              <h4 class="text-white font-bold leading-none mb-1">David Chen</h4>
+              <p class="text-[11px] text-primary/80">UX Lead @ Orbit</p>
+            </div>
+          </div>
+          <div class="flex -space-x-2">
+            <div
+              class="w-6 h-6 rounded-full border border-background-dark bg-slate-800 flex items-center justify-center text-[8px]"
+            >
+              DC
+            </div>
+            <div
+              class="w-6 h-6 rounded-full border border-background-dark bg-primary/40 flex items-center justify-center text-[8px]"
+            >
+              +3
+            </div>
+          </div>
+        </div>
+        <!-- Card Map / Global Access (1x1) -->
+        <div
+          class="col-span-1 row-span-1 glass-slab rounded-xl p-4 flex flex-col items-center justify-center relative overflow-hidden group animate-init animate-fade-in-up-delay-3"
+        >
+          <div
+            class="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity"
+          >
+            <div
+              class="w-full h-full bg-[url('https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&amp;fit=crop&amp;q=80&amp;w=200')] bg-cover bg-center"
+              data-alt="Stylized map of Tokyo at night"
+              data-location="Tokyo"
+              style="
+                https: //lh3.googleusercontent.com/aida-public/AB6AXuCvcjTtdECL0GHH1sGY5ZVMc7iCU3b2LSvYqBzNus2fuCYhcdyAqhNkANUYX1xu-cfUyB49JBAJWKJXUQAfEDzSAD9kWP_D9wELhqxmq_VG8UPTRjIew5fmK_4J1z4MvVL4Yg7wUrzqmS_Yxv5bp9vE-DS8tbyZCcT2yLV7uGCXdsCaPQcrzuf22UzJxJctpdz0MpzLodUmh90578CPv1eMhQlz7tB-_2m2KYXH_LegLfjnlqkXwYFe9kv8qAHPtpOMGrkEQsN7w5U;;
+              "
+            ></div>
+          </div>
+          <span class="material-icons text-white relative z-10">public</span>
+          <span
+            class="text-[10px] text-white/60 relative z-10 font-bold tracking-tighter mt-1"
+            >GLOBAL REACH</span
+          >
+        </div>
+        <!-- Sync/Settings (1x1) -->
+        <div
+          class="col-span-1 row-span-1 glass-slab rounded-xl p-4 flex flex-col items-center justify-center animate-init animate-fade-in-up-delay-4"
+        >
+          <span
+            class="material-symbols-outlined text-white/60 animate-spin-slow"
+            >sync</span
+          >
+          <span
+            class="text-[10px] text-white/40 font-bold mt-1 tracking-widest uppercase"
+            >Syncing...</span
+          >
+        </div>
+      </div>
+      <!-- Floating Action Bar -->
+      <div
+        class="fixed bottom-8 left-1/2 -translate-x-1/2 w-[85%] max-w-sm glass-slab rounded-full px-2 py-2 flex items-center justify-between border border-white/10 shadow-2xl backdrop-blur-2xl animate-init animate-fade-in-up-delay-4"
+      >
+        <button
+          id="btnDashboard"
+          class="w-12 h-12 rounded-full flex items-center justify-center hover:bg-white/5 transition-colors group"
+        >
+          <span
+            class="material-icons text-white/60 group-hover:text-primary transition-colors"
+            >dashboard</span
+          >
+        </button>
+        <button
+          id="btnStyle"
+          class="w-12 h-12 rounded-full flex items-center justify-center hover:bg-white/5 transition-colors group"
+        >
+          <span
+            class="material-icons text-white/60 group-hover:text-primary transition-colors"
+            >style</span
+          >
+        </button>
+        <!-- Central Scan Button -->
+        <button
+          id="btnScan"
+          class="relative -top-2 w-16 h-16 bg-primary rounded-full flex items-center justify-center emerald-glow shadow-lg transform active:scale-95 transition-transform group"
+        >
+          <div
+            class="absolute inset-0 rounded-full border-4 border-white/20 animate-ping opacity-20"
+          ></div>
+          <span class="material-icons text-background-dark font-bold text-3xl"
+            >qr_code_scanner</span
+          >
+        </button>
+        <button
+          id="btnHub"
+          class="w-12 h-12 rounded-full flex items-center justify-center hover:bg-white/5 transition-colors group"
+        >
+          <span
+            class="material-icons text-white/60 group-hover:text-primary transition-colors"
+            >hub</span
+          >
+        </button>
+        <button
+          id="btnSettings"
+          class="w-12 h-12 rounded-full flex items-center justify-center hover:bg-white/5 transition-colors group"
+        >
+          <span
+            class="material-icons text-white/60 group-hover:text-primary transition-colors"
+            >settings</span
+          >
+        </button>
+      </div>
+    </main>
+    <!-- Ambient Floating Elements -->
+    <div class="fixed top-1/4 right-0 w-12 h-12 opacity-10 pointer-events-none">
+      <div
+        class="w-full h-full border border-primary rotate-45 animate-float"
+      ></div>
+    </div>
+    <div class="fixed bottom-1/4 left-4 w-8 h-8 opacity-10 pointer-events-none">
+      <div
+        class="w-full h-full border-2 border-primary/40 rounded-full animate-pulse-slow"
+      ></div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

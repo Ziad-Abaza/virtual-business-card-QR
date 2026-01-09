@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Influencer Digital Card</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Material Symbols -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Theme Config -->
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1313ec",
+              "primary-hover": "#2b2bf7",
+              "background-light": "#f6f6f8",
+              "background-dark": "#101022",
+            },
+            fontFamily: {
+              display: ["Manrope", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "1rem",
+              lg: "2rem",
+              xl: "3rem",
+              full: "9999px",
+            },
+            animation: {
+              float: "float 6s ease-in-out infinite",
+              "fade-in-up": "fadeInUp 0.8s ease-out forwards",
+              "fade-in-up-delay-1": "fadeInUp 0.8s ease-out 0.1s forwards",
+              "fade-in-up-delay-2": "fadeInUp 0.8s ease-out 0.2s forwards",
+              "fade-in-up-delay-3": "fadeInUp 0.8s ease-out 0.3s forwards",
+              "fade-in-up-delay-4": "fadeInUp 0.8s ease-out 0.4s forwards",
+              "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+            },
+            keyframes: {
+              float: {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-10px)" },
+              },
+              fadeInUp: {
+                "0%": { opacity: "0", transform: "translateY(20px)" },
+                "100%": { opacity: "1", transform: "translateY(0)" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      /* Custom Utilities for Glassmorphism */
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        transition: transform 0.3s ease, background 0.3s ease;
+      }
+
+      .glass-panel:hover {
+        background: rgba(255, 255, 255, 0.12);
+        transform: translateY(-2px);
+      }
+
+      .glass-button {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      .glass-button:active {
+        transform: scale(0.95);
+        background: rgba(255, 255, 255, 0.25);
+      }
+
+      /* 3D Avatar Border Effect */
+      .avatar-ring {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.8) 0%,
+          rgba(255, 255, 255, 0.2) 50%,
+          rgba(255, 255, 255, 0) 100%
+        );
+        padding: 4px;
+        border-radius: 9999px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Initial opacity for animations */
+      .animate-init {
+        opacity: 0;
+      }
+    </style>
+    <style>
+      body {
+        min-height: max(884px, 100dvh);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background-dark text-white font-display antialiased overflow-x-hidden selection:bg-primary selection:text-white"
+  >
+    <!-- Main Container -->
+    <div class="relative min-h-screen w-full flex flex-col">
+      <!-- Vibrant Gradient Background -->
+      <div
+        class="fixed inset-0 z-0 bg-gradient-to-br from-[#6b21a8] via-[#a855f7] to-[#f97316]"
+      >
+        <!-- Decorative overlay for noise/texture if desired, keeping it simple gradient for now -->
+        <div class="absolute inset-0 bg-black/20 mix-blend-overlay"></div>
+        <div
+          class="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-purple-500 rounded-full blur-[120px] opacity-40 animate-pulse-slow"
+        ></div>
+        <div
+          class="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-orange-500 rounded-full blur-[120px] opacity-40 animate-pulse-slow"
+        ></div>
+      </div>
+      <!-- Content Layer -->
+      <div
+        class="relative z-10 flex flex-col h-full w-full max-w-md mx-auto min-h-screen pb-8"
+      >
+        <!-- Top App Bar -->
+        <div
+          class="flex items-center justify-between p-4 pt-6 animate-init animate-fade-in-up"
+        >
+          <button
+            id="backBtn"
+            class="glass-button rounded-full size-12 flex items-center justify-center text-white hover:bg-white/20"
+          >
+            <span class="material-symbols-outlined text-[24px]"
+              >arrow_back</span
+            >
+          </button>
+          <div class="flex gap-3">
+            <button
+              id="qrBtn"
+              class="glass-button rounded-full size-12 flex items-center justify-center text-white hover:bg-white/20"
+            >
+              <span class="material-symbols-outlined text-[24px]"
+                >qr_code_2</span
+              >
+            </button>
+            <button
+              id="menuBtn"
+              class="glass-button rounded-full size-12 flex items-center justify-center text-white hover:bg-white/20"
+            >
+              <span class="material-symbols-outlined text-[24px]"
+                >more_horiz</span
+              >
+            </button>
+          </div>
+        </div>
+        <!-- Profile Section -->
+        <div
+          class="flex flex-col items-center mt-4 px-6 animate-init animate-[float_6s_ease-in-out_infinite] animate-fade-in-up-delay-1"
+        >
+          <div class="relative mb-6">
+            <div class="avatar-ring">
+              <div
+                class="relative w-36 h-36 rounded-full overflow-hidden border-4 border-white/20"
+              >
+                <img
+                  alt="Portrait of a female influencer smiling with sunglasses"
+                  class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiRA0I5ZDLwjK4XcwDFMS2Bguq42Z3HvUx37x8D-uq9j3gKipt8Olyr_oGKoHoXMc6yX2qP-clBsJtLKX_NQstQLvgwC8qIFmIFVWPqMQfpaSgQfO1yH4ognFe_n4ULgK-lIZw-P0_CoaTO9Aitw-N3s8oi80ZBqule0zS9oFS3QlhfRISpTwzPsuDVEbM2qNq3ZyLSnrCr6PFE9A6N-aZ7lozVGOuGc9AsSRIpiG7UBAQejkg6TYnmBgQAWhqD3yyWrs5YW3hRVeu"
+                />
+              </div>
+            </div>
+            <!-- Verified Badge -->
+            <div
+              class="absolute bottom-2 right-2 bg-primary rounded-full p-1.5 border-4 border-[#8e49d6] flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
+            >
+              <span
+                class="material-symbols-outlined text-[16px] text-white font-bold"
+                >check</span
+              >
+            </div>
+          </div>
+          <h1
+            class="text-4xl font-extrabold tracking-tight text-center text-white drop-shadow-md mb-1"
+          >
+            Alex Rivera
+          </h1>
+          <p
+            class="text-white/80 text-lg font-medium tracking-wide flex items-center gap-2"
+          >
+            <span class="opacity-70">@alexstyle</span>
+            <span class="size-1 bg-white/50 rounded-full"></span>
+            <span class="text-white">Lifestyle Creator</span>
+          </p>
+        </div>
+        <!-- Stats (Glassmorphism) -->
+        <div class="px-4 mt-8 animate-init animate-fade-in-up-delay-2">
+          <div
+            class="glass-panel rounded-2xl p-5 flex justify-between items-center text-center shadow-lg"
+          >
+            <div
+              class="flex-1 border-r border-white/10 last:border-0 hover:scale-105 transition-transform"
+            >
+              <p class="text-2xl font-bold text-white leading-none">1.2M</p>
+              <p
+                class="text-xs text-white/70 mt-1 uppercase tracking-wider font-semibold"
+              >
+                Followers
+              </p>
+            </div>
+            <div
+              class="flex-1 border-r border-white/10 last:border-0 hover:scale-105 transition-transform"
+            >
+              <p class="text-2xl font-bold text-white leading-none">500k</p>
+              <p
+                class="text-xs text-white/70 mt-1 uppercase tracking-wider font-semibold"
+              >
+                Reach
+              </p>
+            </div>
+            <div class="flex-1 hover:scale-105 transition-transform">
+              <p class="text-2xl font-bold text-white leading-none">5%</p>
+              <p
+                class="text-xs text-white/70 mt-1 uppercase tracking-wider font-semibold"
+              >
+                Engage
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Social Actions Dock -->
+        <div class="px-4 mt-6 animate-init animate-fade-in-up-delay-3">
+          <div class="flex justify-center gap-6">
+            <button
+              id="btnInsta"
+              class="group flex flex-col items-center gap-2"
+            >
+              <div
+                class="size-14 bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] rounded-full flex items-center justify-center shadow-lg transform transition cubic-bezier(0.175, 0.885, 0.32, 1.275) group-hover:-translate-y-2 group-hover:scale-110 ring-2 ring-transparent group-hover:ring-white/50"
+              >
+                <!-- Instagram Icon -->
+                <svg
+                  class="w-7 h-7 text-white fill-current"
+                  viewbox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                  ></path>
+                </svg>
+              </div>
+            </button>
+            <button
+              id="btnTiktok"
+              class="group flex flex-col items-center gap-2"
+            >
+              <div
+                class="size-14 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center shadow-lg border border-white/10 transform transition cubic-bezier(0.175, 0.885, 0.32, 1.275) group-hover:-translate-y-2 group-hover:scale-110 ring-2 ring-transparent group-hover:ring-white/50"
+              >
+                <!-- TikTok Icon -->
+                <svg
+                  class="w-7 h-7 text-white fill-current"
+                  viewbox="0 0 24 24"
+                >
+                  <path
+                    d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"
+                  ></path>
+                </svg>
+              </div>
+            </button>
+            <button
+              id="btnYoutube"
+              class="group flex flex-col items-center gap-2"
+            >
+              <div
+                class="size-14 bg-[#FF0000] rounded-full flex items-center justify-center shadow-lg transform transition cubic-bezier(0.175, 0.885, 0.32, 1.275) group-hover:-translate-y-2 group-hover:scale-110 ring-2 ring-transparent group-hover:ring-white/50"
+              >
+                <!-- YouTube Icon -->
+                <svg
+                  class="w-7 h-7 text-white fill-current"
+                  viewbox="0 0 24 24"
+                >
+                  <path
+                    d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"
+                  ></path>
+                </svg>
+              </div>
+            </button>
+            <button
+              id="btnTwitter"
+              class="group flex flex-col items-center gap-2"
+            >
+              <div
+                class="size-14 bg-[#1DA1F2] rounded-full flex items-center justify-center shadow-lg transform transition cubic-bezier(0.175, 0.885, 0.32, 1.275) group-hover:-translate-y-2 group-hover:scale-110 ring-2 ring-transparent group-hover:ring-white/50"
+              >
+                <!-- Twitter/X Icon -->
+                <svg
+                  class="w-7 h-7 text-white fill-current"
+                  viewbox="0 0 24 24"
+                >
+                  <path
+                    d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"
+                  ></path>
+                </svg>
+              </div>
+            </button>
+          </div>
+        </div>
+        <!-- Main CTA -->
+        <div class="px-6 mt-8 animate-init animate-fade-in-up-delay-3">
+          <button
+            id="btnFollow"
+            class="w-full h-14 bg-primary hover:bg-primary-hover active:scale-[0.98] transition-all rounded-full flex items-center justify-center gap-3 shadow-xl hover:shadow-2xl hover:shadow-primary/40 group/btn overflow-hidden relative"
+          >
+            <div
+              class="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-700 ease-in-out"
+            ></div>
+            <span
+              class="text-white text-lg font-extrabold tracking-wide relative z-10"
+              >FOLLOW ME</span
+            >
+            <span
+              class="material-symbols-outlined text-white transition-transform group-hover/btn:translate-x-1 relative z-10"
+              >arrow_forward</span
+            >
+          </button>
+        </div>
+        <!-- Content Cards -->
+        <div
+          class="flex-1 px-4 mt-8 flex flex-col gap-4 pb-8 animate-init animate-fade-in-up-delay-4"
+        >
+          <!-- Bio Card -->
+          <div class="glass-panel rounded-2xl p-5">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="material-symbols-outlined text-white/80"
+                >format_quote</span
+              >
+              <h3 class="text-white font-bold text-sm uppercase tracking-wide">
+                About Me
+              </h3>
+            </div>
+            <p class="text-white/90 font-medium leading-relaxed">
+              Exploring the world one coffee shop at a time ☕️
+              <br />Currently in:
+              <span
+                class="text-white font-bold underline decoration-wavy decoration-primary underline-offset-4"
+                >Tokyo, Japan</span
+              >
+              🇯🇵
+            </p>
+          </div>
+          <!-- Latest Content Link -->
+          <a
+            class="group glass-panel rounded-2xl p-2 pr-5 flex items-center gap-4 hover:bg-white/10 transition-colors"
+            href="#"
+          >
+            <div
+              class="h-20 w-20 rounded-xl bg-cover bg-center shrink-0 relative overflow-hidden group-hover:rotate-1 transition-transform"
+              data-alt="Abstract colorful neon photography setup"
+              style="
+                background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuATdaVGuvdQENrzOQyffdwMha9o6QMlZnGhtzHsjzQR0ro56b2wXLKpTXIobIxCbZGCwUhhOftSdxn_u4gpL3ffs5RZQM94Mj3zl5WWYibLnYIzY07Hn_jsg4BXIfEg3XUd90Q3biKn5fZyWsC7y2RJHi6Kd7PG6bDdd12IG-b6YXg1LUAJGX8MyYKCp1uGhgFsZnCtIpRaPjrL1usTi7PkwPxwUnLxUbqcJEe2639wJd92AF6wMI3xhrBUw8fI6PGOtYA2Wl3kcPRu');
+              "
+            >
+              <div
+                class="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+              >
+                <span
+                  class="material-symbols-outlined text-white drop-shadow-md group-hover:scale-110 transition-transform"
+                  >play_circle</span
+                >
+              </div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs text-white/60 font-bold uppercase mb-1">
+                Latest Video
+              </p>
+              <p
+                class="text-white font-bold truncate leading-tight group-hover:text-primary-300 transition-colors"
+              >
+                My Essential Camera Gear 2024 - What's in my bag?
+              </p>
+            </div>
+            <span
+              class="material-symbols-outlined text-white/50 group-hover:text-white transition-colors group-hover:translate-x-1"
+              >chevron_right</span
+            >
+          </a>
+          <!-- Shop Link -->
+          <a
+            class="group glass-panel rounded-2xl p-2 pr-5 flex items-center gap-4 hover:bg-white/10 transition-colors"
+            href="#"
+          >
+            <div
+              class="h-20 w-20 rounded-xl bg-cover bg-center shrink-0 relative overflow-hidden group-hover:-rotate-1 transition-transform"
+              data-alt="Modern white smart watch product shot"
+              style="
+                background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBIlTNEirSOdyc0t2PSnQWe-vKq37SBoPL1vr-4F2VKVqMTnIa52c6PSm6grVeQKY4EmVFH4qQj7S6I8nuCrKS_2VToWtoA6UftJmCOWKIUNlFxMTvPaT5mSI8zjAfGS5WguOIBIGB1XAL4uelB7CDyZadxJzZANNNa2zZsBwElF4wMmdbn-iN-oTk7j6eu5JYmriuSH0F90sNXmejRqxRSa1QarabQeACnVjFdig4g_2Z_TxawW35GzUWsd8UwvnWHGYqkJWo2wwnp');
+              "
+            ></div>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs text-white/60 font-bold uppercase mb-1">
+                Shop My Look
+              </p>
+              <p
+                class="text-white font-bold truncate leading-tight group-hover:text-primary-300 transition-colors"
+              >
+                Summer Collection Presets &amp; Merch
+              </p>
+            </div>
+            <span
+              class="material-symbols-outlined text-white/50 group-hover:text-white transition-colors group-hover:translate-x-1"
+              >chevron_right</span
+            >
+          </a>
+        </div>
+        <div class="h-6"></div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
